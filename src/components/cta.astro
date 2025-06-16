@@ -1,0 +1,67 @@
+---
+// contact-banner.astro
+import Link from "./ui/link.astro";
+const { heading, subheading, buttonText } = Astro.props;
+---
+
+<div class="relative">
+  <!-- Contact Banner -->
+  <div class="bg-black p-8 md:px-20 md:py-20 mt-20 mx-auto max-w-5xl rounded-lg flex flex-col items-center text-center">
+    <h2 class="text-white text-4xl md:text-6xl tracking-tight">{heading}</h2>
+    <p class="text-slate-400 mt-4 text-lg md:text-xl">{subheading}</p>
+    <div class="flex mt-5">
+      <button id="openModalBtn" class="bg-white text-black px-5 py-2 rounded-lg font-medium hover:bg-gray-200 transition">
+        {buttonText}
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="contactModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/60 backdrop-blur-sm">
+    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md w-full relative">
+      <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-black text-xl">×</button>
+      <h3 class="text-xl font-bold mb-4">Let's Work Together 💼</h3>
+      <form class="flex flex-col gap-4">
+        <input type="text" placeholder="Name" class="border p-2 rounded" />
+        <input type="email" placeholder="Email" class="border p-2 rounded" />
+        <textarea placeholder="Your Message" class="border p-2 rounded h-28"></textarea>
+        <button type="submit" class="bg-black text-white py-2 rounded hover:bg-gray-900 transition">
+          Send Message
+        </button>
+      </form>
+      <div class="mt-4 flex justify-center gap-4 text-sm text-gray-500">
+        <a href="https://linkedin.com/in/shree-chaurasia" target="_blank">LinkedIn</a>
+        <a href="https://behance.net/shreechaurasia" target="_blank">Behance</a>
+        <a href="https://www.figma.com/@shree" target="_blank">Figma</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById("openModalBtn");
+    const closeBtn = document.getElementById("closeModalBtn");
+    const modal = document.getElementById("contactModal");
+
+    if (!openBtn || !closeBtn || !modal) return;
+
+    openBtn.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+      }
+    });
+  });
+</script>
+

@@ -1,0 +1,68 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon/components";
+
+const features = [
+  {
+    title: "End-to-End Product Design",
+    description:
+      "Expert in taking projects from brief to pixel-perfect screens—covering wireframing, prototyping, usability testing, and high-fidelity interface design with a focus on real-world use cases.",
+    icon: "bx:bxs-briefcase",
+  },
+  {
+    title: "Design Systems & Component Libraries",
+    description:
+      "Skilled at creating and maintaining scalable design systems that ensure visual consistency, reusability, and faster development handoffs.",
+    icon: "bx:bxs-window-alt",
+  },
+  {
+    title: "User-Centered Design Thinking",
+    description:
+      "Applies UX methodologies like persona mapping, user journeys, and task flows to craft intuitive experiences that align with both user behavior and business goals.",
+    icon: "bx:bxs-data",
+  },
+  {
+    title: "Enterprise & Public-Facing Interfaces",
+    description:
+      "Experienced in building complex dashboards, management tools, and government-scale applications (like stadium, toll, and parking systems) with high usability under pressure.",
+    icon: "bx:bxs-bot",
+  },
+  {
+    title: "Interactive Prototypes & Usability Validation",
+    description:
+      "Creates functional Figma prototypes to simulate real user flows and validate UX decisions through team feedback or client demos.",
+    icon: "bx:bxs-file-find",
+  },
+  {
+    title: "Cross-Team Collaboration & Handoff",
+    description:
+      "Comfortable working alongside developers and product managers using tools like Notion and Git, ensuring smooth design-to-development transitions.",
+    icon: "bx:bxs-user",
+  },
+];
+---
+
+<div class="mt-16">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+    Everything you need to craft powerful user experiences
+  </h2>
+  <p class="text-lg mt-4 text-slate-600">
+    From dashboards to detail views—these are the skills I use daily to turn ideas into intuitive interfaces.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-3  mt-16 gap-8">
+  {
+    features.map((item) => (
+      <div class="flex gap-4 items-start p-4 rounded-md border-2 border-[#D8DEE9] border-opacity-50 hover:border-gray-800 transition-all duration-700">
+        <div class="mt-1 bg-black rounded-full  p-1 w-8 h-8 shrink-0 flex items-center justify-center">
+          <Icon class="text-white size-5" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

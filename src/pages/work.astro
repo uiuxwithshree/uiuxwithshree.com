@@ -1,0 +1,91 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Button from "@components/ui/button.astro";
+import { Icon } from "astro-icon/components";
+import Link from "@components/ui/link.astro";
+
+const projects = [
+  {
+    thumbnail:
+      "https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE",
+    type: "Web App",
+    title: "Task Flow Manager",
+    description:
+      "A clean task management system UI focused on intuitive workflows for remote teams. Dummy project to showcase design skills.",
+    figmaLink: "https://figma.com/xyz",
+    notionLink: "https://notion.so/xyz",
+  },
+];
+---
+
+<Layout title="Work">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">My Work</Fragment>
+      <Fragment slot="desc">
+        Selected design projects that showcase my love for clarity, consistency,
+        and user-first thinking.
+      </Fragment>
+    </Sectionhead>
+
+    <main class="mt-16">
+      <ul class="grid gap-16 max-w-4xl mx-auto">
+        {
+          projects.map((project, index) => (
+            <li>
+              <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+                <img
+                  src={project.thumbnail}
+                  alt={project.title}
+                  width={800}
+                  height={600}
+                  loading={index <= 2 ? "eager" : "lazy"}
+                  decoding={index <= 2 ? "sync" : "async"}
+                  class="w-full rounded-md object-cover object-center bg-white"
+                />
+
+                <div>
+                  <span class="text-pink-400 uppercase tracking-wider text-sm font-medium">
+                    {project.type}
+                  </span>
+
+                  <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1">
+                    {project.title}
+                  </h2>
+
+                  <p class="text-slate-400 mt-2 text-base">
+                    {project.description}
+                  </p>
+
+                  <div class="flex gap-4 mt-4">
+                    <Link
+                      href="#"
+                      href={project.figmaLink}
+                      target="_blank"
+                      class="flex gap-1 items-center justify-center"
+                      rel="noopener">
+                      <Icon class="size-5" name="simple-icons:figma" />
+                      View Design
+                    </Link>
+                    <Link
+                      size="lg"
+                      style="outline"
+                      rel="noopener"
+                      href={project.notionLink}
+                      class="flex gap-1 items-center justify-center"
+                      target="_blank">
+                      <Icon class="size-5" name="simple-icons:notion" />
+                      Project Overview
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </Container>
+</Layout>

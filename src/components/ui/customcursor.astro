@@ -1,0 +1,81 @@
+---
+// @ts-nocheck
+---
+
+// Styles
+<style>
+  .cursor,
+  .cursor-ring {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(#22d3ee, #1d4ed8);
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
+    transition: transform 100ms ease-out;
+  }
+
+  .cursor-ring {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(34, 211, 238, 0.6);
+    border-radius: 50%;
+  }
+
+  @media (max-width: 768px) {
+    .cursor,
+    .cursor-ring {
+      display: none;
+    }
+  }
+</style>
+
+<!-- Cursor elements -->
+<div class="cursor"></div>
+<div class="cursor-ring"></div>
+
+<!-- Global script runs only on the client -->
+<script is:global>
+  if (typeof window !== 'undefined') {
+    const cursor = document.querySelector('.cursor');
+    const ring = document.querySelector('.cursor-ring');
+
+    if (cursor && ring && window.innerWidth >= 768) {
+      let ringX = 0, ringY = 0;
+      let targetX = 0, targetY = 0;
+      const speed = 0.1;
+
+      document.body.style.cursor = 'none';
+
+      const handleMouseMove = (e) => {
+        const { clientX: x, clientY: y } = e;
+        cursor.style.left = `${x}px`;
+        cursor.style.top = `${y}px`;
+        targetX = x;
+        targetY = y;
+      };
+
+      const animateRing = () => {
+        ringX += (targetX - ringX) * speed;
+        ringY += (targetY - ringY) * speed;
+        ring.style.left = `${ringX}px`;
+        ring.style.top = `${ringY}px`;
+        requestAnimationFrame(animateRing);
+      };
+
+      document.addEventListener('mousemove', handleMouseMove);
+      animateRing();
+
+      window.addEventListener('beforeunload', () => {
+        document.body.style.cursor = 'auto';
+        document.removeEventListener('mousemove', handleMouseMove);
+      });
+    }
+  }
+</script>
