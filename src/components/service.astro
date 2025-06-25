@@ -4,22 +4,23 @@ import { Tick } from "@components/ui/icons";
 const { plan } = Astro.props;
 ---
 
-<div>
+<div class="h-full">
   <div
-    class="flex flex-col w-full order-first lg:order-none border-2 border-[#D8DEE9] border-opacity-50 hover:border-gray-800 transition-all duration-700 py-5 px-6 rounded-md">
-    <div class="text-center">
+    class="flex flex-col h-full w-full border-2 border-[#D8DEE9] border-opacity-50 hover:border-gray-800 transition-all duration-700 py-5 px-6 rounded-2xl">
+    <div class="text-center mb-4">
       <h4 class="text-lg font-medium text-gray-800">{plan.service}</h4>
       {
         plan.description && (
-          <p class="mt-1 text-gray-400 text-left">{plan.description}</p>
+          <p class="mt-1 text-gray-600 text-left">{plan.description}</p>
         )
       }
-    </div><ul class="grid mt-8 text-left gap-y-4">
+    </div>
+    <ul class="grid gap-y-4 text-left mt-auto">
       {
         plan.features.map((item) => (
           <li class="flex items-start gap-3 text-gray-800">
-            <Tick class="w-6 h-6" />
-            <span>{item}</span>
+            {" "}
+            <Tick class="w-5 h-5 mt-1" /> <span>{item}</span>{" "}
           </li>
         ))
       }

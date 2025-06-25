@@ -28,16 +28,16 @@ const { Content } = await entry.render();
         {entry.data.title}
       </h1>
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
+        <span class="text-gray-600">
           {entry.data.author}
         </span>
-        <span class="text-gray-400">•</span>
+        <span class="text-gray-600">•</span>
         <time
-          class="text-gray-400"
+          class="text-gray-600"
           datetime={entry.data.publishDate.toISOString()}>
           {entry.data.publishDate.toDateString()}
         </time>
-        <span class="text-gray-400 hidden md:block">•</span>
+        <span class="text-gray-600 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
             entry.data.tags.map((tag) => (
@@ -54,7 +54,7 @@ const { Content } = await entry.render();
     <div class="text-center mt-8">
       <a
         href="/blog"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
+        class="bg-gray-100 px-5 py-3 rounded-2xl hover:bg-gray-200 transition"
         >← Back to Blog</a
       >
     </div>

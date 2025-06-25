@@ -2,20 +2,22 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import Button from "@components/ui/button.astro";
 import { Icon } from "astro-icon/components";
 import Link from "@components/ui/link.astro";
+import linearThumbnail from "@assets/linear-thumbnail.png";
+import { Picture } from "astro:assets";
 
 const projects = [
   {
-    thumbnail:
-      "https://fastly.picsum.photos/id/16/2500/1667.jpg?hmac=uAkZwYc5phCRNFTrV_prJ_0rP0EdwJaZ4ctje2bY7aE",
-    type: "Web App",
-    title: "Task Flow Manager",
+    thumbnail: linearThumbnail,
+    type: "UI/UX Design Practice · Landing Page Replication",
+    title: "Linear.app - Design Case Study",
     description:
-      "A clean task management system UI focused on intuitive workflows for remote teams. Dummy project to showcase design skills.",
-    figmaLink: "https://figma.com/xyz",
-    notionLink: "https://notion.so/xyz",
+      "I recreated Linear.app's homepage in Figma—not to clone it, but to study what makes it feel so effortlessly clean and structured. This deep-dive helped me sharpen my eye for hierarchy, spacing, and typography, while also leveling up my layout and component skills. Check out the full breakdown to see what I uncovered.",
+    figmaLink:
+      "https://www.figma.com/proto/bptnwNw3ILrpQuQUXZeWIE/Linear-app?page-id=134%3A76&node-id=134-77&viewport=483%2C40%2C0.05&t=YOdf4RG5dPbhmgo2-1&scaling=contain&content-scaling=responsive",
+    notionLink:
+      "https://uiuxwithshree.notion.site/I-Replicated-Linear-Here-s-What-Happened-ft-Case-Study-21c1f6b475fb80a4a7dbfae47db62938",
   },
 ];
 ---
@@ -25,8 +27,8 @@ const projects = [
     <Sectionhead>
       <Fragment slot="title">My Work</Fragment>
       <Fragment slot="desc">
-        Selected design projects that showcase my love for clarity, consistency,
-        and user-first thinking.
+        Here's a glimpse of the work I'm proud of - projects that challenged me,
+        inspired me, and made me a better designer.
       </Fragment>
     </Sectionhead>
 
@@ -36,16 +38,15 @@ const projects = [
           projects.map((project, index) => (
             <li>
               <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
-                <img
+                <Picture
                   src={project.thumbnail}
                   alt={project.title}
-                  width={800}
-                  height={600}
-                  loading={index <= 2 ? "eager" : "lazy"}
-                  decoding={index <= 2 ? "sync" : "async"}
-                  class="w-full rounded-md object-cover object-center bg-white"
+                  sizes="(max-width: 400px) 100vw, 250px"
+                  class="rounded-2xl"
+                  quality={100}
+                  loading="eager"
+                  format="avif"
                 />
-
                 <div>
                   <span class="text-pink-400 uppercase tracking-wider text-sm font-medium">
                     {project.type}
@@ -55,7 +56,7 @@ const projects = [
                     {project.title}
                   </h2>
 
-                  <p class="text-slate-400 mt-2 text-base">
+                  <p class="text-gray-600 mt-2 text-base">
                     {project.description}
                   </p>
 
@@ -64,7 +65,7 @@ const projects = [
                       href="#"
                       href={project.figmaLink}
                       target="_blank"
-                      class="flex gap-1 items-center justify-center"
+                      class="flex gap-1 items-center justify-center rounded-2xl"
                       rel="noopener">
                       <Icon class="size-5" name="simple-icons:figma" />
                       View Design
@@ -74,7 +75,7 @@ const projects = [
                       style="outline"
                       rel="noopener"
                       href={project.notionLink}
-                      class="flex gap-1 items-center justify-center"
+                      class="flex gap-1 items-center justify-center rounded-2xl"
                       target="_blank">
                       <Icon class="size-5" name="simple-icons:notion" />
                       Project Overview

@@ -17,14 +17,14 @@ const { frontmatter } = Astro.props;
         {frontmatter.title}
       </h1>
       <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
-        <span class="text-gray-400">
+        <span class="text-gray-600">
           {frontmatter.author}
         </span>
-        <span class="text-gray-400">•</span>
-        <time class="text-gray-400" datetime={frontmatter.publishDate}>
+        <span class="text-gray-600">•</span>
+        <time class="text-gray-600" datetime={frontmatter.publishDate}>
           {getFormattedDate(frontmatter.publishDate)}
         </time>
-        <span class="text-gray-400 hidden md:block">•</span>
+        <span class="text-gray-600 hidden md:block">•</span>
         <div class="w-full md:w-auto flex flex-wrap gap-3">
           {
             frontmatter.tags.map((tag) => (
@@ -41,7 +41,7 @@ const { frontmatter } = Astro.props;
     <div class="text-center mt-8">
       <a
         href="/blog"
-        class="bg-gray-100 px-5 py-3 rounded-md hover:bg-gray-200 transition"
+        class="bg-gray-100 px-5 py-3 rounded-2xl hover:bg-gray-200 transition"
         >← Back to Blog</a
       >
     </div>

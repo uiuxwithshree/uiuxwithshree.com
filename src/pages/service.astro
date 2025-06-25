@@ -8,63 +8,65 @@ import Cta from "@components/cta.astro";
 const pricing = [
   {
     service: "🎯 UI/UX Design",
-    description: "From wireframes to high-fidelity designs, I craft clean, consistent, and responsive interfaces that align with your brand and convert users.",
+    description:
+      "From wireframes to high-fidelity designs, I craft clean, consistent, and responsive interfaces that align with your brand and convert users.",
     popular: false,
     features: [
       "Wireframes & Prototypes (Figma)",
       "High-Fidelity UI Screens",
       "Design Systems & Style Guides",
-    ]
+    ],
   },
   {
     service: "🔍 UX Research & Audit",
-    description: "Struggling with bounce rates or poor usability? Let me identify what’s not working and fix it. I audit with empathy and suggest data-backed improvements.",
+    description:
+      "Struggling with bounce rates or poor usability? Let me identify what’s not working and fix it. I audit with empathy and suggest data-backed improvements.",
     popular: true,
     features: [
       "Heuristic Evaluation",
       "User Journey Mapping",
       "Actionable Fixes & Enhancements",
-    ]
+    ],
   },
   {
     service: "📱 Web & App Design",
-    description: "Need a modern, mobile-first design for your app or website? I design products that look stunning and scale beautifully on every screen.",
+    description:
+      "Need a modern, mobile-first design for your app or website? I design products that look stunning and scale beautifully on every screen.",
     popular: false,
     features: [
       "Web Apps / SaaS",
       "iOS & Android Apps",
       "Landing Pages / Marketing Sites",
-    ]
+    ],
   },
   {
     service: "✏️ Freelance Collaboration",
-    description: "Have a fast-moving project and need an extra brain on board? I slot right in—zero hand-holding required. Remote-friendly, deadline-driven.",
+    description:
+      "Have a fast-moving project and need an extra brain on board? I slot right in—zero hand-holding required. Remote-friendly, deadline-driven.",
     popular: false,
-    features: [
-      "Startups",
-      "Digital Agencies",
-      "Founders with product ideas",
-    ]
+    features: ["Startups", "Digital Agencies", "Founders with product ideas"],
   },
   {
     service: "🌐 Webflow / No-Code",
-    description: "Need your designs live—without waiting on devs? I use Webflow and no-code tools to turn mockups into fully functional, responsive websites.",
+    description:
+      "Need your designs live—without waiting on devs? I use Webflow and no-code tools to turn mockups into fully functional, responsive websites.",
     popular: false,
     features: [
       "Pixel-perfect Webflow builds",
       "CMS setup & animations",
       "Responsive, SEO-ready delivery",
-    ]
+    ],
   },
   {
     service: "🧠 Brand & Visual Strategy",
-    description: "Design is more than UI—it's how your brand is perceived. I help define your visual language so every screen feels on-brand and intentional.",
+    description:
+      "Design is more than UI—it's how your brand is perceived. I help define your visual language so every screen feels on-brand and intentional.",
     popular: false,
     features: [
       "Moodboards & Style Exploration",
       "Logo & Brand Elements (if needed)",
       "Visual Consistency Across Screens",
-    ]
+    ],
   },
 ];
 ---
@@ -74,7 +76,8 @@ const pricing = [
     <Sectionhead>
       <Fragment slot="title">💼 Services</Fragment>
       <Fragment slot="desc">
-       I offer a range of design solutions from sleek UI/UX to in-depth user research.
+        I offer a range of design solutions from sleek UI/UX to in-depth user
+        research.
       </Fragment>
     </Sectionhead>
 
@@ -82,10 +85,10 @@ const pricing = [
       {pricing.map((item) => <ServiceCard plan={item} />)}
     </div>
     <Cta
-  heading="Create Awesome Designs Together"
-  subheading="You've seen this CTA on the homepage—here it is again so you don't have to scroll back. 😃"
-  buttonText="Let's Work Together"
-  buttonLink="/contact"
-/>
-    </Container>
+      heading="Create Awesome Designs Together"
+      subheading="You've seen this CTA on the homepage—here it is again so you don't have to scroll back. 😃"
+      buttonText="Let's Work Together"
+      buttonLink="/contact"
+    />
+  </Container>
 </Layout>
