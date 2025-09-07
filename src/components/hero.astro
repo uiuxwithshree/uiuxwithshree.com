@@ -3,51 +3,45 @@ import { Picture } from "astro:assets";
 import heroImage from "assets/hero.jpg";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import Magneticlines from "./ui/magneticlines.astro";
 ---
 
 <main
-  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
- <div class="py-4 md:order-1 hidden md:block max-w-[280px] mx-auto">
-  <!-- <Picture
-    src={heroImage}
-    alt="Penguin with a laptop"
-    widths={[100, 200, 300]}
-    sizes="(max-width: 400px) 100vw, 250px"
-    class="rounded-lg"
-    quality={100}
-    loading="eager"
-    format="avif"
-/> -->
-<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWtpcm1pOXVhbjhscno0eTM0amd4Z3Rha3VoYzdjcmVveDE3czEyZyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/oqz2J05eS1yPOhUMLP/giphy.gif" alt="Penguin with a laptop" class="rounded-lg" loading="eager" />
-</div>
-
-  <div>
+  class="grid grid-cols-1 lg:grid-cols-2 place-items-center gap-12 pt-16 pb-12 md:pt-20 md:pb-24">
+  
+  <!-- Left Section (Text) -->
+  <div class="px-6 md:px-8 text-center lg:text-left max-w-2xl">
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Hey! I'm Shree, a UX/UI Designer. 🌻
+      class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      Hey! I'm Shree, a UX/UI Designer.
     </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      I'm a UX/UI Designer with over three years experience conceptualizing and crafting digital products, helping businesses and non-profits expand their capacity for impact. 🚀 
+    <p class="text-base md:text-lg mt-4 text-slate-600 max-w-xl mx-auto lg:mx-0">
+      I'm a UX/UI Designer with over three years experience conceptualizing and
+      crafting digital products, helping businesses and non-profits expand their
+      capacity for impact.
     </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+    <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
       <Link
         href="/service"
-        class="flex gap-1 items-center justify-center rounded-2xl"
+        class="flex gap-1 items-center justify-center rounded-lg"
         rel="noopener">
-        💪
-
-         Work with me?
+        Work with me?
       </Link>
-      <!-- <Link
+      <Link
         size="lg"
         style="outline"
         rel="noopener"
-        href="https://github.com/surjithctly/astroship"
-        class="flex gap-1 items-center justify-center"
+        href="https://www.freelancer.com/u/uiuxwithshree"
+        class="flex gap-1 items-center justify-center rounded-lg"
         target="_blank">
-        💼
-         Freelancer
-      </Link> -->
+        <Icon class="text-black size-5" name="bx:bxs-briefcase" />
+        Freelancer
+      </Link>
     </div>
+  </div>
+
+  <!-- Right Section (Magnetic Lines) -->
+  <div class="flex items-center justify-center w-full">
+    <Magneticlines containerSize="60vmin" className="mx-auto" />
   </div>
 </main>
