@@ -5,10 +5,31 @@ import Sectionhead from "@components/sectionhead.astro";
 import { Icon } from "astro-icon/components";
 import Link from "@components/ui/link.astro";
 import linearThumbnail from "@assets/linear-thumbnail.png";
+import ngoThumbnail from "@assets/ngo-thumbnail.png";
+import medicalThumbnail from "@assets/medical-thumbnail.png";
 import { Picture } from "astro:assets";
 
 const projects = [
   {
+    thumbnail: medicalThumbnail,
+    type: "UI/UX Design · Mobile App Design",
+    title: "Medial & Appointment App Design",
+    description:
+      "A modern, intuitive app user interface designed in Figma, featuring seamless navigation, engaging visuals, and a smooth, user-friendly experience to find doctors, book appointments, manage history and more.",
+    figmaLink:
+      "https://www.figma.com/design/b3MjDDMjVmvEDaTaeI26yb/Medical-health-app?node-id=0-1&t=N6oIo6xRVmYg4lt5-1",
+    notionLink: "",
+  },
+  {
+    thumbnail: ngoThumbnail,
+    type: "UI/UX Design · Fundraiser & NGO",
+    title: "NGO Website Design",
+    description:
+      "I designed a clean and user-friendly website for an NGO to improve their online presence and connect better with supporters. The site clearly showed their mission, ongoing work, and real impact stories. With an easy layout and trust-building visuals, visitors could quickly explore causes, donate, and get involved. The goal was to build trust, engage supporters, and create a strong digital identity.",
+    figmaLink:
+      "https://www.figma.com/design/rfOyRED0XX3mrXTjDePKAW/NGO-website-design?node-id=1-823&t=RzkeE95sSS8a9Edg-1",
+    notionLink: "",
+  },{
     thumbnail: linearThumbnail,
     type: "UI/UX Design Practice · Landing Page Replication",
     title: "Linear.app - Design Case Study",
@@ -18,7 +39,7 @@ const projects = [
       "https://www.figma.com/proto/bptnwNw3ILrpQuQUXZeWIE/Linear-app?page-id=134%3A76&node-id=134-77&viewport=483%2C40%2C0.05&t=YOdf4RG5dPbhmgo2-1&scaling=contain&content-scaling=responsive",
     notionLink:
       "https://uiuxwithshree.notion.site/I-Replicated-Linear-Here-s-What-Happened-ft-Case-Study-21c1f6b475fb80a4a7dbfae47db62938",
-  },
+  }
 ];
 ---
 
@@ -61,25 +82,43 @@ const projects = [
                   </p>
 
                   <div class="flex gap-4 mt-4">
-                    <Link
-                      href="#"
-                      href={project.figmaLink}
-                      target="_blank"
-                      class="flex gap-1 items-center justify-center rounded-2xl"
-                      rel="noopener">
-                      <Icon class="size-5" name="simple-icons:figma" />
-                      View Design
-                    </Link>
-                    <Link
-                      size="lg"
-                      style="outline"
-                      rel="noopener"
-                      href={project.notionLink}
-                      class="flex gap-1 items-center justify-center rounded-2xl"
-                      target="_blank">
-                      <Icon class="size-5" name="simple-icons:notion" />
-                      Project Overview
-                    </Link>
+                    {project.figmaLink ? (
+                      <Link
+                        href={project.figmaLink}
+                        target="_blank"
+                        class="flex gap-1 items-center justify-center rounded-2xl"
+                        rel="noopener">
+                        <Icon class="size-5" name="simple-icons:figma" />
+                        View Design
+                      </Link>
+                    ) : (
+                      <button
+                        disabled
+                        class="flex gap-1 items-center justify-center rounded-2xl opacity-40 cursor-not-allowed px-5 py-2.5 border border-gray-300 text-gray-500">
+                        <Icon class="size-5" name="simple-icons:figma" />
+                        View Design
+                      </button>
+                    )}
+                    
+                    {project.notionLink ? (
+                      <Link
+                        size="lg"
+                        style="outline"
+                        rel="noopener"
+                        href={project.notionLink}
+                        class="flex gap-1 items-center justify-center rounded-2xl"
+                        target="_blank">
+                        <Icon class="size-5" name="simple-icons:notion" />
+                        Project Overview
+                      </Link>
+                    ) : (
+                      <button
+                        disabled
+                        class="flex gap-1 items-center justify-center rounded-2xl opacity-40 cursor-not-allowed px-5 py-2.5 border border-gray-300 text-gray-500">
+                        <Icon class="size-5" name="simple-icons:notion" />
+                        Project Overview
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
