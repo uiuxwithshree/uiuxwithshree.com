@@ -1,21 +1,14 @@
 ---
-import { SEO } from "astro-seo";
 import Footer from "@components/footer.astro";
 import Navbar from "@components/navbar/navbar.astro";
-import "@fontsource-variable/inter/index.css";
-import "@fontsource-variable/bricolage-grotesque";
-import Customcursor from "@components/ui/customcursor.astro";
+import { ViewTransitions } from "astro:transitions";
+import CustomCursor from "@components/ui/CustomCursor.astro";
 
 export interface Props {
   title: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
-
-const resolvedImageWithDomain = new URL(
-  "/opengraph.jpg",
-  Astro.site,
-).toString();
 
 const { title } = Astro.props;
 
@@ -24,52 +17,59 @@ const makeTitle = title ? `${title} | Shree` : "Shree | UI/UX Designer";
 
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO
-      title={makeTitle}
-      description="Shree is a UI/UX designer focused on crafting thoughtful, modern user experiences. Explore her design work, ideas, and career journey."
-      canonical={canonicalURL}
-      twitter={{
-        creator: "@uiuxwithshree",
-        site: "@uiuxwithshree",
-        card: "summary_large_image",
-      }}
-      openGraph={{
-        basic: {
-          url: canonicalURL,
-          type: "website",
-          title: makeTitle,
-          image: resolvedImageWithDomain,
-        },
-        image: {
-          alt: "Screenshot of Shree’s portfolio showcasing clean and modern UI designs",
-        },
-      }}
-    />
+    <title>{makeTitle}</title>
+    <ViewTransitions />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <script>
+      import Lenis from 'lenis'
+
+      const lenis = new Lenis()
+
+      function raf(time) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+    </script>
   </head>
-  <body>
+  <body class="bg-cream text-dark antialiased overflow-x-hidden selection:bg-coral selection:text-white">
+    <CustomCursor />
     <Navbar />
     <slot />
     <Footer />
     <style is:global>
-      img {
-        content-visibility: auto;
+      html.lenis, html.lenis body {
+        height: auto;
       }
-      html {
-        font-family: "Outfit", sans-serif;
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
       }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+      }
+      
       /* Hide scrollbar for all browsers */
       html {
         scrollbar-width: none; /* Firefox */
@@ -78,33 +78,13 @@ const makeTitle = title ? `${title} | Shree` : "Shree | UI/UX Designer";
       html::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
       }
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -10;
-        background: linear-gradient(
-          115deg,
-          rgba(255, 0, 149, 0.15),
-          rgba(0, 200, 255, 0.15)
-        );
-        animation: aurora 20s ease-in-out infinite;
-        mix-blend-mode: screen;
-        pointer-events: none;
-        filter: blur(80px);
-        opacity: 0.8;
+      
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'DM Serif Display', serif;
       }
-
-      @keyframes aurora {
-        0% {
-          transform: translate(0, 0) scale(1);
-        }
-        50% {
-          transform: translate(-5%, -3%) scale(1.03) rotate(2deg);
-        }
-        100% {
-          transform: translate(0, 0) scale(1);
-        }
+      
+      body {
+        font-family: 'DM Sans', sans-serif;
       }
     </style>
   </body>

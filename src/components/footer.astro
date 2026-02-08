@@ -1,14 +1,46 @@
-<footer class="my-20">
-  <p class="text-center text-sm text-gray-700">
-    © {new Date().getFullYear()} Shree Chaurasia.
-  </p>
-  <p class="text-center text-xs text-gray-700 mt-1">
-    Made by <a
-      href="https://sidonweb.com"
-      target="_blank"
-      rel="noopener"
-      class="hover:underline">
-      Siddharth
-    </a>
-  </p>
+<footer class="bg-dark text-cream py-20 px-4 md:px-16 mt-20 rounded-t-[3rem]">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start mb-20 gap-12">
+      <div class="max-w-xl">
+        <h2 class="text-5xl md:text-7xl font-serif mb-8 leading-tight">
+          Let's create something <span class="italic text-coral">extraordinary</span> together.
+        </h2>
+        <a href="mailto:hello@shree.com" class="inline-flex items-center gap-2 px-8 py-4 border border-cream/20 rounded-full hover:bg-coral hover:border-coral hover:text-white transition-all duration-300 font-sans uppercase tracking-widest text-sm">
+          Start a Project
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 11L11 1M11 1H1M11 1V11"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-x-16 gap-y-10">
+        <div>
+          <h3 class="font-sans uppercase tracking-widest text-sm text-cream/40 mb-6">Sitemap</h3>
+          <ul class="flex flex-col gap-4 font-sans text-lg">
+            <li><a href="/" class="hover:text-coral transition-colors">Home</a></li>
+            <li><a href="/work" class="hover:text-coral transition-colors">Work</a></li>
+            <li><a href="/service" class="hover:text-coral transition-colors">Services</a></li>
+            <li><a href="/about" class="hover:text-coral transition-colors">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-sans uppercase tracking-widest text-sm text-cream/40 mb-6">Socials</h3>
+          <ul class="flex flex-col gap-4 font-sans text-lg">
+            <li><a href="#" class="hover:text-coral transition-colors">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-coral transition-colors">Twitter</a></li>
+            <li><a href="#" class="hover:text-coral transition-colors">Instagram</a></li>
+            <li><a href="#" class="hover:text-coral transition-colors">Dribbble</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-cream/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="text-sm font-sans text-cream/40">
+        &copy; {new Date().getFullYear()} Shree Chaurasia. All rights reserved.
+      </p>
+      <div class="flex gap-8 text-sm font-sans text-cream/40">
+        <a href="#" class="hover:text-cream transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-cream transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
 </footer>

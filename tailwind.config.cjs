@@ -6,11 +6,27 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: [
-          "Bricolage Grotesque Variable",
-          "Inter Variable",
+          "DM Sans",
           "Inter",
+          "sans-serif",
           ...defaultTheme.fontFamily.sans,
         ],
+        serif: ["DM Serif Display", "serif", ...defaultTheme.fontFamily.serif],
+      },
+      colors: {
+        cream: "#FBF5EE",
+        coral: "#F06D73",
+        lavender: "#E1E1FF",
+        dark: "#1A1A1A",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 1s ease-out forwards",
       },
     },
   },

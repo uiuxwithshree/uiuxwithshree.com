@@ -1,0 +1,77 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { Picture } from "astro:assets";
+// Use a placeholder image if real one not available or use the one from component
+---
+
+<Layout title="About">
+  <section class="min-h-screen pt-32 pb-20 px-4 md:px-16 max-w-7xl mx-auto flex flex-col justify-center">
+    <div class="relative z-10">
+      <h1 class="text-6xl md:text-9xl font-serif text-dark mb-8 opacity-0 animate-[fade-up_1s_ease-out_forwards]">
+        The <span class="italic text-coral">Designer</span>
+      </h1>
+      
+      <div class="grid md:grid-cols-12 gap-12 items-start opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
+        <div class="md:col-span-12 lg:col-span-5 relative">
+          <div class="relative overflow-hidden rounded-[2rem] h-[600px] w-full bg-gray-200 group">
+             <!-- Placeholder image matching the aesthetic -->
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop" 
+              alt="Shree Portrait"
+              class="object-cover w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105"
+            />
+            <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/50 to-transparent">
+              <span class="text-white font-sans uppercase tracking-widest text-sm">Shree Chaurasia</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="md:col-span-12 lg:col-span-7 flex flex-col gap-10 pt-10">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-serif mb-6 leading-relaxed">
+              Empowering the world with <span class="border-b-2 border-coral/30 pb-1">functional designs</span>.
+            </h2>
+            <p class="text-lg md:text-xl font-sans text-dark/70 leading-relaxed space-y-6">
+              Hey, I'm Shree. I design interfaces that don't just look good—they work. Clean, intuitive, user-focused. That's the standard I hold every pixel to.
+            </p>
+            <p class="text-lg md:text-xl font-sans text-dark/70 leading-relaxed mt-6">
+              My journey into design started in college, driven by an obsession with how digital products looked and felt. I began redesigning my favorite apps just for fun—until I realized it was more than a hobby. That curiosity turned into a purpose.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-8 mt-8 border-t border-dark/10 pt-8">
+            <div>
+              <span class="block text-5xl font-serif text-coral mb-2">3+</span>
+              <span class="uppercase tracking-widest text-xs opacity-60">Years Experience</span>
+            </div>
+            <div>
+              <span class="block text-5xl font-serif text-coral mb-2">20+</span>
+              <span class="uppercase tracking-widest text-xs opacity-60">Projects Delivered</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white px-4 md:px-16">
+    <div class="max-w-7xl mx-auto">
+       <h2 class="text-4xl md:text-6xl font-serif text-dark mb-16 text-center">Milestones</h2>
+       
+       <div class="grid md:grid-cols-3 gap-8">
+         {[
+           { year: "2021", title: "The Beginning", desc: "Started my journey into design, obsessing over pixels and redesigning apps for fun." },
+           { year: "2022", title: "First Freelance", desc: "Took on my first real-world project, learning the hard way that design is more than just visuals." },
+           { year: "2023", title: "Going Pro", desc: "Worked with startups and agencies, delivering high-impact designs that solved real problems." }
+         ].map((milestone, i) => (
+           <div class="group border-t border-dark/20 pt-8 hover:border-coral transition-colors duration-500">
+             <span class="text-6xl font-serif text-dark/10 group-hover:text-coral/20 transition-colors duration-500 block mb-4">{milestone.year}</span>
+             <h3 class="text-2xl font-serif mb-3">{milestone.title}</h3>
+             <p class="text-dark/60 leading-relaxed">{milestone.desc}</p>
+           </div>
+         ))}
+       </div>
+    </div>
+  </section>
+</Layout>

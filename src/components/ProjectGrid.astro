@@ -1,0 +1,81 @@
+---
+const projects = [
+  {
+    title: "Fintech Dashboard",
+    category: "UI Design",
+    image: "https://images.unsplash.com/photo-1761839258753-85d8eecbbc29?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    size: "large"
+  },
+  {
+    title: "Travel App",
+    category: "Mobile UX",
+    image: "https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?q=80&w=2553&auto=format&fit=crop",
+    size: "small"
+  },
+  {
+    title: "E-commerce Redesign",
+    category: "Web Design",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    size: "medium"
+  },
+   {
+    title: "Healthcare Portal",
+    category: "Product Design",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
+    size: "small"
+  },
+];
+---
+
+<section id="work" class="py-20 px-4 md:px-16 max-w-7xl mx-auto">
+  <div class="flex justify-between items-end mb-16">
+    <h2 class="text-6xl md:text-8xl text-dark">Selected<br/><span class="italic text-coral">Works</span></h2>
+    <span class="hidden md:block text-sm font-sans uppercase tracking-widest text-dark/60 mb-2">2023 — Present</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-8">
+    {projects.map((project, index) => (
+      <div class={`project-card opacity-0 translate-y-8 transition-all duration-1000 ease-out group relative flex flex-col gap-4 md:col-span-6 md:mt-10`}>
+        <div class="relative overflow-hidden rounded-[2rem] aspect-[2/1] w-full bg-gray-200">
+          <img 
+            src={project.image} 
+            alt={project.title}
+            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+          <div class="absolute inset-0 bg-dark/0 group-hover:bg-dark/10 transition-colors duration-500"></div>
+        </div>
+        
+        <div class="flex justify-between items-start">
+          <div>
+            <h3 class="text-2xl md:text-3xl font-serif text-dark">{project.title}</h3>
+            <p class="text-sm font-sans uppercase tracking-wider text-dark/60 mt-1">{project.category}</p>
+          </div>
+          <div class="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center group-hover:bg-coral group-hover:border-coral group-hover:text-white transition-all duration-300">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.project-card').forEach((card) => {
+      observer.observe(card);
+    });
+  });
+</script>

@@ -1,81 +1,57 @@
 ---
-// @ts-nocheck
 ---
 
-// Styles
-<style>
-  .cursor,
-  .cursor-ring {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-  }
+<div id="custom-cursor" class="fixed top-0 left-0 w-6 h-6 border border-coral rounded-full pointer-events-none z-[9999] mix-blend-difference opacity-0 transition-transform duration-100 ease-out translate-x-[-50%] translate-y-[-50%]"></div>
+<div id="cursor-dot" class="fixed top-0 left-0 w-1.5 h-1.5 bg-coral rounded-full pointer-events-none z-[9999] opacity-0 transition-transform duration-75 ease-out translate-x-[-50%] translate-y-[-50%]"></div>
 
-  .cursor {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: radial-gradient(#22d3ee, #1d4ed8);
-    box-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
-    transition: transform 100ms ease-out;
-  }
+<script>
+  import { gsap } from "gsap";
 
-  .cursor-ring {
-    width: 28px;
-    height: 28px;
-    border: 1px solid rgba(34, 211, 238, 0.6);
-    border-radius: 50%;
-  }
+  const cursor = document.getElementById("custom-cursor");
+  const dot = document.getElementById("cursor-dot");
+  
+  // Show cursor when mouse enters the window
+  document.body.addEventListener("mouseenter", () => {
+    gsap.to([cursor, dot], { opacity: 1, duration: 0.3 });
+  });
 
-  @media (max-width: 768px) {
-    .cursor,
-    .cursor-ring {
-      display: none;
-    }
-  }
-</style>
+  document.body.addEventListener("mouseleave", () => {
+    gsap.to([cursor, dot], { opacity: 0, duration: 0.3 });
+  });
 
-<!-- Cursor elements -->
-<div class="cursor"></div>
-<div class="cursor-ring"></div>
+  // Follow mouse
+  window.addEventListener("mousemove", (e) => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.05 }); // slightly faster for trailing effect
+  });
 
-<!-- Global script runs only on the client -->
-<script is:global>
-  if (typeof window !== 'undefined') {
-    const cursor = document.querySelector('.cursor');
-    const ring = document.querySelector('.cursor-ring');
+  // Hover effect on links and buttons
+  const interactiveElements = document.querySelectorAll("a, button, .project-card");
+  
+  interactiveElements.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      gsap.to(cursor, { scale: 3, duration: 0.3 });
+      gsap.to(dot, { scale: 0.5, duration: 0.3 });
+    });
+    
+    el.addEventListener("mouseleave", () => {
+      gsap.to(cursor, { scale: 1, duration: 0.3 });
+      gsap.to(dot, { scale: 1, duration: 0.3 });
+    });
+  });
 
-    if (cursor && ring && window.innerWidth >= 768) {
-      let ringX = 0, ringY = 0;
-      let targetX = 0, targetY = 0;
-      const speed = 0.1;
-
-      document.body.style.cursor = 'none';
-
-      const handleMouseMove = (e) => {
-        const { clientX: x, clientY: y } = e;
-        cursor.style.left = `${x}px`;
-        cursor.style.top = `${y}px`;
-        targetX = x;
-        targetY = y;
-      };
-
-      const animateRing = () => {
-        ringX += (targetX - ringX) * speed;
-        ringY += (targetY - ringY) * speed;
-        ring.style.left = `${ringX}px`;
-        ring.style.top = `${ringY}px`;
-        requestAnimationFrame(animateRing);
-      };
-
-      document.addEventListener('mousemove', handleMouseMove);
-      animateRing();
-
-      window.addEventListener('beforeunload', () => {
-        document.body.style.cursor = 'auto';
-        document.removeEventListener('mousemove', handleMouseMove);
+  // Re-initialize on view transitions
+  document.addEventListener("astro:page-load", () => {
+    const newInteractiveElements = document.querySelectorAll("a, button, .project-card");
+    newInteractiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        gsap.to(cursor, { scale: 3, duration: 0.3 });
+        gsap.to(dot, { scale: 0.5, duration: 0.3 });
       });
-    }
-  }
+      el.addEventListener("mouseleave", () => {
+        gsap.to(cursor, { scale: 1, duration: 0.3 });
+        gsap.to(dot, { scale: 1, duration: 0.3 });
+      });
+    });
+  });
 </script>

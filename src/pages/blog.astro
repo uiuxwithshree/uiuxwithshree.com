@@ -17,57 +17,79 @@ publishedBlogEntries.sort(function (a, b) {
 ---
 
 <Layout title="Blog">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Blogs</Fragment>
-      <Fragment slot="desc">
-       Design stories, career lessons, and thoughts I can't keep to myself.
-      </Fragment>
-    </Sectionhead>
-    <main class="mt-16">
-      <ul class="grid gap-16 max-w-4xl mx-auto">
-        {
-          publishedBlogEntries.map((blogPostEntry, index) => (
-            <li>
-              <a href={`/blog/${blogPostEntry.slug}`}>
-                <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
+  <section class="min-h-screen pt-32 pb-20 px-4 md:px-16 max-w-7xl mx-auto">
+    <div class="mb-24">
+      <h1 class="text-6xl md:text-9xl font-serif text-dark opacity-0 animate-[fade-up_1s_ease-out_forwards]">
+        Design <span class="italic text-coral">Notes</span>
+      </h1>
+      <p class="text-xl md:text-2xl font-sans text-dark/60 mt-8 max-w-2xl opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
+        Thoughts on design, technology, and the spaces in between.
+      </p>
+    </div>
+
+    <ul class="grid gap-x-12 gap-y-24 grid-cols-1 md:grid-cols-2">
+      {
+        publishedBlogEntries.map((blogPostEntry, index) => (
+          <li class={`group opacity-0 translate-y-8 blog-card`}>
+            <a href={`/blog/${blogPostEntry.slug}`} class="block">
+              <div class="space-y-6">
+                <div class="relative overflow-hidden rounded-[2rem] w-full bg-gray-200 aspect-[16/9] group-hover:shadow-2xl transition-all duration-500">
                   <Picture
                     src={blogPostEntry.data.image.src}
                     alt={blogPostEntry.data.image.alt}
                     sizes="(max-width: 800px) 100vw, 800px"
-                    width={800}
-                    height={600}
+                    width={1200}
+                    height={800}
                     loading={index <= 2 ? "eager" : "lazy"}
                     decoding={index <= 2 ? "sync" : "async"}
-                    class="w-full rounded-2xl object-cover object-center bg-white"
+                    class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                   />
-                  <div>
-                    <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
-                      {blogPostEntry.data.category}
-                    </span>
-
-                    <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1 ">
-                      {blogPostEntry.data.title}
-                    </h2>
-
-                    <div class="flex gap-2 mt-3">
-                      <span class="text-gray-600">
-                        {blogPostEntry.data.author}
-                      </span>
-                      <span class="text-gray-600">• </span>
-                      <time
-                        class="text-gray-600"
-                        datetime={blogPostEntry.data.publishDate.toISOString()}>
-                        {blogPostEntry.data.publishDate.toDateString()}
-                      </time>
+                  <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-dark"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
                     </div>
                   </div>
                 </div>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </main>
-  </Container>
+                
+                <div>
+                  <div class="flex items-center gap-4 mb-3 text-sm font-sans uppercase tracking-widest text-dark/50">
+                    <span class="text-coral font-bold">{blogPostEntry.data.category}</span>
+                    <span>•</span>
+                    <time datetime={blogPostEntry.data.publishDate.toISOString()}>
+                      {blogPostEntry.data.publishDate.toDateString()}
+                    </time>
+                  </div>
+
+                  <h2 class={`font-serif text-dark group-hover:text-coral transition-colors duration-300 leading-tight text-5xl`}>
+                    {blogPostEntry.data.title}
+                  </h2>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+    
+      document.querySelectorAll('.blog-card').forEach((card, index) => {
+        setTimeout(() => {
+           observer.observe(card);
+        }, index * 100);
+      });
+    });
+  </script>
 </Layout>

@@ -1,48 +1,74 @@
 ---
-import Contactform from "@components/contactform.astro";
+import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
-import Layout from "@layouts/Layout.astro";
+import Button from "@components/ui/button.astro";
+import Contactform from "@components/contactform.astro";
 import { Icon } from "astro-icon/components";
+
+// Simplified form directly in page styling or keeping component if adaptable
 ---
 
 <Layout title="Contact">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Contact</Fragment>
-      <Fragment slot="desc"
-        >Got a project in mind or just want to say hello? Feel free to reach
-        out. I'd love to hear from you :)</Fragment
-      >
-    </Sectionhead>
-
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
-      <div>
-        <h2 class="font-medium text-2xl text-gray-800">Get in Touch with Me</h2>
-        <p class="text-lg leading-relaxed text-gray-700 mt-3">
-          Have something to say? We are here to help. Fill up the form or send
-          email or call phone.
+  <section class="min-h-screen pt-32 pb-20 px-4 md:px-16 max-w-7xl mx-auto flex flex-col justify-center">
+    <div class="grid md:grid-cols-2 gap-20 items-start">
+      <div class="opacity-0 animate-[fade-up_1s_ease-out_forwards]">
+        <h1 class="text-6xl md:text-9xl font-serif text-dark mb-12">
+          Let's <span class="italic text-coral">Talk</span>
+        </h1>
+        <p class="text-xl md:text-2xl font-sans text-dark/70 leading-relaxed max-w-md">
+          Have a project in mind? Looking for a design partner? Or just want to say hi? I'm all ears.
         </p>
-        <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-600 w-4 h-4" name="uil:map-marker" />
-            <span>Noida, India</span>
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-600 w-4 h-4" name="uil:envelope" /><a
-              href="mailto:hello@astroshipstarter.com"
-              >uiuxwithshree@gmail.com</a
-            >
-            </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-600 w-4 h-4" name="uil:phone" /><a
-              href="tel:+917905973857">+91 79059 73857</a
-            >
+        
+        <div class="flex flex-col gap-6 mt-16 md:mt-32">
+          <div class="group">
+             <span class="block text-xs font-sans uppercase tracking-widest text-dark/40 mb-2">Email Me</span>
+             <a href="mailto:uiuxwithshree@gmail.com" class="text-2xl md:text-3xl font-serif text-dark hover:text-coral transition-colors flex items-center gap-2 group-hover:translate-x-2 duration-300">
+               uiuxwithshree@gmail.com
+               <svg class="w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+             </a>
           </div>
+          
+           <div class="group">
+             <span class="block text-xs font-sans uppercase tracking-widest text-dark/40 mb-2">Follow</span>
+             <div class="flex gap-4">
+                <a href="#" class="text-dark hover:text-coral transition-colors text-lg font-sans">LinkedIn</a>
+                <a href="#" class="text-dark hover:text-coral transition-colors text-lg font-sans">Dribbble</a>
+                <a href="#" class="text-dark hover:text-coral transition-colors text-lg font-sans">Twitter</a>
+             </div>
           </div>
-        </div>
-        <div>
-          <Contactform />
         </div>
       </div>
+      
+      <div class="mt-12 md:mt-24 opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
+        <form action="https://api.web3forms.com/submit" method="POST" id="form" class="space-y-10">
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+          
+          <div class="relative group">
+            <input type="text" name="name" id="name" required class="w-full bg-transparent border-b border-dark/20 py-4 text-xl font-serif text-dark focus:outline-none focus:border-coral transition-colors placeholder:text-transparent peer" placeholder="Your Name" />
+            <label for="name" class="absolute left-0 top-4 text-xl text-dark/40 font-serif transition-all duration-300 peer-focus:-top-6 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:font-sans peer-focus:text-coral peer-valid:-top-6 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:font-sans">Your Name</label>
+          </div>
+          
+          <div class="relative group">
+            <input type="email" name="email" id="email" required class="w-full bg-transparent border-b border-dark/20 py-4 text-xl font-serif text-dark focus:outline-none focus:border-coral transition-colors placeholder:text-transparent peer" placeholder="Email Address" />
+            <label for="email" class="absolute left-0 top-4 text-xl text-dark/40 font-serif transition-all duration-300 peer-focus:-top-6 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:font-sans peer-focus:text-coral peer-valid:-top-6 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:font-sans">Email Address</label>
+          </div>
+          
+          <div class="relative group">
+            <textarea name="message" id="message" required rows="1" class="w-full bg-transparent border-b border-dark/20 py-4 text-xl font-serif text-dark focus:outline-none focus:border-coral transition-colors placeholder:text-transparent peer resize-none h-auto min-h-[60px]" placeholder="Tell me about your project"></textarea>
+            <label for="message" class="absolute left-0 top-4 text-xl text-dark/40 font-serif transition-all duration-300 peer-focus:-top-6 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:font-sans peer-focus:text-coral peer-valid:-top-6 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:font-sans">Tell me about your project</label>
+          </div>
+          
+          <div class="pt-8">
+            <button type="submit" class="group flex items-center gap-4 text-xl font-sans uppercase tracking-widest hover:text-coral transition-colors">
+              <span>Send Message</span>
+              <div class="w-12 h-12 rounded-full border border-dark/20 flex items-center justify-center group-hover:bg-coral group-hover:border-coral group-hover:text-white transition-all duration-500">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:rotate-[-45deg] transition-transform duration-500"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </Container>
+  </section>
 </Layout>

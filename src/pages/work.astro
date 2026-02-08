@@ -1,131 +1,118 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import { Icon } from "astro-icon/components";
-import Link from "@components/ui/link.astro";
-import linearThumbnail from "@assets/linear-thumbnail.png";
-import ngoThumbnail from "@assets/ngo-thumbnail.png";
-import medicalThumbnail from "@assets/medical-thumbnail.png";
 import { Picture } from "astro:assets";
+import Sectionhead from "@components/sectionhead.astro";
 
 const projects = [
   {
-    thumbnail: medicalThumbnail,
-    type: "UI/UX Design · Mobile App Design",
-    title: "Medial & Appointment App Design",
-    description:
-      "A modern, intuitive app user interface designed in Figma, featuring seamless navigation, engaging visuals, and a smooth, user-friendly experience to find doctors, book appointments, manage history and more.",
-    figmaLink:
-      "https://www.figma.com/design/b3MjDDMjVmvEDaTaeI26yb/Medical-health-app?node-id=0-1&t=N6oIo6xRVmYg4lt5-1",
-    notionLink: "",
+    title: "Fintech Dashboard",
+    category: "UI Design",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+    size: "large"
   },
   {
-    thumbnail: ngoThumbnail,
-    type: "UI/UX Design · Fundraiser & NGO",
-    title: "NGO Website Design",
-    description:
-      "I designed a clean and user-friendly website for an NGO to improve their online presence and connect better with supporters. The site clearly showed their mission, ongoing work, and real impact stories. With an easy layout and trust-building visuals, visitors could quickly explore causes, donate, and get involved. The goal was to build trust, engage supporters, and create a strong digital identity.",
-    figmaLink:
-      "https://www.figma.com/design/rfOyRED0XX3mrXTjDePKAW/NGO-website-design?node-id=1-823&t=RzkeE95sSS8a9Edg-1",
-    notionLink: "",
-  },{
-    thumbnail: linearThumbnail,
-    type: "UI/UX Design Practice · Landing Page Replication",
-    title: "Linear.app - Design Case Study",
-    description:
-      "I recreated Linear.app's homepage in Figma—not to clone it, but to study what makes it feel so effortlessly clean and structured. This deep-dive helped me sharpen my eye for hierarchy, spacing, and typography, while also leveling up my layout and component skills. Check out the full breakdown to see what I uncovered.",
-    figmaLink:
-      "https://www.figma.com/proto/bptnwNw3ILrpQuQUXZeWIE/Linear-app?page-id=134%3A76&node-id=134-77&viewport=483%2C40%2C0.05&t=YOdf4RG5dPbhmgo2-1&scaling=contain&content-scaling=responsive",
-    notionLink:
-      "https://uiuxwithshree.notion.site/I-Replicated-Linear-Here-s-What-Happened-ft-Case-Study-21c1f6b475fb80a4a7dbfae47db62938",
+    title: "Travel App",
+    category: "Mobile UX",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?q=80&w=2553&auto=format&fit=crop",
+    size: "small"
+  },
+  {
+    title: "E-commerce Redesign",
+    category: "Web Design",
+    year: "2022",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    size: "medium"
+  },
+   {
+    title: "Healthcare Portal",
+    category: "Product Design",
+    year: "2022",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
+    size: "large"
+  },
+  {
+    title: "Fashion Editorial",
+    category: "Art Direction",
+    year: "2021",
+    image: "https://images.unsplash.com/photo-1509319117193-42d427418604?q=80&w=2670&auto=format&fit=crop",
+    size: "small"
+  },
+  {
+    title: "Crypto Wallet",
+    category: "Mobile App",
+    year: "2021",
+    image: "https://images.unsplash.com/photo-1621416894512-5363cb1e3270?q=80&w=2670&auto=format&fit=crop",
+    size: "medium"
   }
 ];
 ---
 
 <Layout title="Work">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">My Work</Fragment>
-      <Fragment slot="desc">
-        Here's a glimpse of the work I'm proud of - projects that challenged me,
-        inspired me, and made me a better designer.
-      </Fragment>
-    </Sectionhead>
+  <section class="min-h-screen pt-32 pb-20 px-4 md:px-16 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+      <h1 class="text-6xl md:text-9xl font-serif text-dark opacity-0 animate-[fade-up_1s_ease-out_forwards]">
+        Selected <span class="italic text-coral">Works</span>
+      </h1>
+      
+      <div class="mt-8 md:mt-0 opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
+        <span class="font-sans uppercase tracking-widest text-sm text-dark/60 block mb-2 text-right">Filter By</span>
+        <div class="flex gap-4">
+          <button class="text-dark font-sans text-sm uppercase tracking-widest border-b border-dark">All</button>
+          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">UI/UX</button>
+          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">Mobile</button>
+          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">Web</button>
+        </div>
+      </div>
+    </div>
 
-    <main class="mt-16">
-      <ul class="grid gap-16 max-w-4xl mx-auto">
-        {
-          projects.map((project, index) => (
-            <li>
-              <div class="grid md:grid-cols-2 gap-5 md:gap-10 items-center">
-                <Picture
-                  src={project.thumbnail}
-                  alt={project.title}
-                  sizes="(max-width: 400px) 100vw, 250px"
-                  class="rounded-2xl"
-                  quality={100}
-                  loading="eager"
-                  format="avif"
-                />
-                <div>
-                  <span class="text-pink-400 uppercase tracking-wider text-sm font-medium">
-                    {project.type}
-                  </span>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-x-10">
+      {projects.map((project, index) => (
+        <div class={`project-card group relative flex flex-col gap-6 opacity-0 translate-y-8 md:col-span-6 md:mt-12`}>
+          <div class="relative overflow-hidden rounded-[2rem] aspect-[4/2] w-full bg-gray-200 cursor-none">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+            />
+            <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center">
+              <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">View Case Study</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-start border-t border-dark/10 pt-6">
+            <div>
+              <h3 class="text-3xl font-serif text-dark group-hover:text-coral transition-colors">{project.title}</h3>
+              <p class="text-sm font-sans uppercase tracking-wider text-dark/60 mt-1">{project.category}</p>
+            </div>
+            <span class="font-serif text-xl text-dark/40">{project.year}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
 
-                  <h2 class="text-3xl font-semibold leading-snug tracking-tight mt-1">
-                    {project.title}
-                  </h2>
-
-                  <p class="text-gray-600 mt-2 text-base">
-                    {project.description}
-                  </p>
-
-                  <div class="flex gap-4 mt-4">
-                    {project.figmaLink ? (
-                      <Link
-                        href={project.figmaLink}
-                        target="_blank"
-                        class="flex gap-1 items-center justify-center rounded-2xl"
-                        rel="noopener">
-                        <Icon class="size-5" name="simple-icons:figma" />
-                        View Design
-                      </Link>
-                    ) : (
-                      <button
-                        disabled
-                        class="flex gap-1 items-center justify-center rounded-2xl opacity-40 cursor-not-allowed px-5 py-2.5 border border-gray-300 text-gray-500">
-                        <Icon class="size-5" name="simple-icons:figma" />
-                        View Design
-                      </button>
-                    )}
-                    
-                    {project.notionLink ? (
-                      <Link
-                        size="lg"
-                        style="outline"
-                        rel="noopener"
-                        href={project.notionLink}
-                        class="flex gap-1 items-center justify-center rounded-2xl"
-                        target="_blank">
-                        <Icon class="size-5" name="simple-icons:notion" />
-                        Project Overview
-                      </Link>
-                    ) : (
-                      <button
-                        disabled
-                        class="flex gap-1 items-center justify-center rounded-2xl opacity-40 cursor-not-allowed px-5 py-2.5 border border-gray-300 text-gray-500">
-                        <Icon class="size-5" name="simple-icons:notion" />
-                        Project Overview
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </main>
-  </Container>
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+            entry.target.classList.add('transition-all', 'duration-1000', 'ease-out');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+    
+      document.querySelectorAll('.project-card').forEach((card, index) => {
+        setTimeout(() => {
+           observer.observe(card);
+        }, index * 100); // Staggered start
+      });
+    });
+  </script>
 </Layout>
