@@ -17,7 +17,7 @@ import { Picture } from "astro:assets";
           <div class="relative overflow-hidden rounded-[2rem] h-[600px] w-full bg-gray-200 group">
              <!-- Placeholder image matching the aesthetic -->
             <img 
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2564&auto=format&fit=crop" 
+              src="/about.jpg" 
               alt="Shree Portrait"
               class="object-cover w-full h-full transition-transform duration-1000 ease-out group-hover:scale-105"
             />
@@ -61,12 +61,14 @@ import { Picture } from "astro:assets";
        
        <div class="grid md:grid-cols-3 gap-8">
          {[
-           { year: "2021", title: "The Beginning", desc: "Started my journey into design, obsessing over pixels and redesigning apps for fun." },
-           { year: "2022", title: "First Freelance", desc: "Took on my first real-world project, learning the hard way that design is more than just visuals." },
-           { year: "2023", title: "Going Pro", desc: "Worked with startups and agencies, delivering high-impact designs that solved real problems." }
+           { year: "2022", title: "The Beginning", desc: "Started my journey into design, obsessing over pixels and redesigning apps for fun." },
+           { year: "2023", title: "First Freelance", desc: "Took on my first real-world project, learning the hard way that design is more than just visuals." },
+           { year: "2024", title: "Going Pro", desc: "Worked with startups and agencies, delivering high-impact designs that solved real problems." },
+           { year: "2025", title: "Scaling Up", desc: "Joined Houston Systems as a Product Designer, leading end-to-end design of complex products for high-stress environments." },
+           { year: "2026", title: "Innovation", desc: "Exploring new design trends and technologies to stay ahead of the curve." }
          ].map((milestone, i) => (
            <div class="group border-t border-dark/20 pt-8 hover:border-coral transition-colors duration-500">
-             <span class="text-6xl font-serif text-dark/10 group-hover:text-coral/20 transition-colors duration-500 block mb-4">{milestone.year}</span>
+             <span class="text-6xl font-serif text-dark/10 group-hover:text-coral transition-colors duration-500 block mb-4">{milestone.year}</span>
              <h3 class="text-2xl font-serif mb-3">{milestone.title}</h3>
              <p class="text-dark/60 leading-relaxed">{milestone.desc}</p>
            </div>

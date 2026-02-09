@@ -1,28 +1,29 @@
 ---
 const projects = [
   {
-    title: "Fintech Dashboard",
-    category: "UI Design",
-    image: "https://images.unsplash.com/photo-1761839258753-85d8eecbbc29?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    size: "large"
-  },
-  {
-    title: "Travel App",
-    category: "Mobile UX",
-    image: "https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?q=80&w=2553&auto=format&fit=crop",
-    size: "small"
-  },
-  {
-    title: "E-commerce Redesign",
+    title: "NGO Fundraising Website",
     category: "Web Design",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    size: "medium"
+    image: "/ngo-thumbnail.png",
+    link: "https://www.behance.net/gallery/243051159/Modern-website-for-an-Indian-NGO/modules/1402104831"
+  },
+  {
+    title: "Whatsapp UX Redesign",
+    category: "Mobile UX",
+    image: "/placeholder.jpg",
+    size: "small",
+    link: "https://www.loom.com/share/b70f298997a44589a7b0bb1b203f32ed"
+  },
+  {
+    title: "Linear.app redesign",
+    category: "Design Practice",
+    image: "/linear-thumbnail.png",
+    link: "https://www.behance.net/gallery/243048601/Replicated-Linearapp/modules/1402102205"
   },
    {
-    title: "Healthcare Portal",
+    title: "Medical Appointment App",
     category: "Product Design",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
-    size: "small"
+    image: "/medical-thumbnail.png",
+    link: "https://www.behance.net/gallery/243049783/Mobile-App-Design/modules/1402096967"
   },
 ];
 ---
@@ -50,11 +51,11 @@ const projects = [
             <h3 class="text-2xl md:text-3xl font-serif text-dark">{project.title}</h3>
             <p class="text-sm font-sans uppercase tracking-wider text-dark/60 mt-1">{project.category}</p>
           </div>
-          <div class="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center group-hover:bg-coral group-hover:border-coral group-hover:text-white transition-all duration-300">
+          <a href={project.link} target="_blank" class="w-10 h-10 rounded-full border border-dark/20 flex items-center justify-center group-hover:bg-coral group-hover:border-coral group-hover:text-white transition-all duration-300">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </div>
+          </a>
         </div>
       </div>
     ))}

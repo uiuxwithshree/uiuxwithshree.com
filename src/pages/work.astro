@@ -6,111 +6,134 @@ import Sectionhead from "@components/sectionhead.astro";
 
 const projects = [
   {
-    title: "Fintech Dashboard",
-    category: "UI Design",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
-    size: "large"
-  },
-  {
-    title: "Travel App",
-    category: "Mobile UX",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1512756290469-ec264b7fbf87?q=80&w=2553&auto=format&fit=crop",
-    size: "small"
-  },
-  {
-    title: "E-commerce Redesign",
+    title: "NGO Fundraising Website",
     category: "Web Design",
-    year: "2022",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-    size: "medium"
+    image: "/ngo-thumbnail.png",
+    link: "https://www.behance.net/gallery/243051159/Modern-website-for-an-Indian-NGO/modules/1402104831",
+    year: "2025",
   },
-   {
-    title: "Healthcare Portal",
+  {
+    title: "Whatsapp UX Redesign",
+    category: "Mobile UX",
+    image: "/placeholder.jpg",
+    link: "https://www.loom.com/share/b70f298997a44589a7b0bb1b203f32ed",
+    year: "2024",
+  },
+  {
+    title: "Linear.app redesign",
+    category: "Design Practice",
+    image: "/linear-thumbnail.png",
+    link: "https://www.behance.net/gallery/243048601/Replicated-Linearapp/modules/1402102205",
+    year: "2025",
+  },
+  {
+    title: "Medical Appointment App",
     category: "Product Design",
-    year: "2022",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
-    size: "large"
+    image: "/medical-thumbnail.png",
+    link: "https://www.behance.net/gallery/243049783/Mobile-App-Design/modules/1402096967",
+    year: "2025",
   },
-  {
-    title: "Fashion Editorial",
-    category: "Art Direction",
-    year: "2021",
-    image: "https://images.unsplash.com/photo-1509319117193-42d427418604?q=80&w=2670&auto=format&fit=crop",
-    size: "small"
-  },
-  {
-    title: "Crypto Wallet",
-    category: "Mobile App",
-    year: "2021",
-    image: "https://images.unsplash.com/photo-1621416894512-5363cb1e3270?q=80&w=2670&auto=format&fit=crop",
-    size: "medium"
-  }
 ];
 ---
 
 <Layout title="Work">
   <section class="min-h-screen pt-32 pb-20 px-4 md:px-16 max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-end mb-20">
-      <h1 class="text-6xl md:text-9xl font-serif text-dark opacity-0 animate-[fade-up_1s_ease-out_forwards]">
+      <h1
+        class="text-6xl md:text-9xl font-serif text-dark opacity-0 animate-[fade-up_1s_ease-out_forwards]">
         Selected <span class="italic text-coral">Works</span>
       </h1>
-      
-      <div class="mt-8 md:mt-0 opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
-        <span class="font-sans uppercase tracking-widest text-sm text-dark/60 block mb-2 text-right">Filter By</span>
+
+      <div
+        class="mt-8 md:mt-0 opacity-0 animate-[fade-up_1s_ease-out_0.3s_forwards]">
+        <span
+          class="font-sans uppercase tracking-widest text-sm text-dark/60 block mb-2 text-right"
+          >Filter By</span
+        >
         <div class="flex gap-4">
-          <button class="text-dark font-sans text-sm uppercase tracking-widest border-b border-dark">All</button>
-          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">UI/UX</button>
-          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">Mobile</button>
-          <button class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest">Web</button>
+          <button
+            class="text-dark font-sans text-sm uppercase tracking-widest border-b border-dark"
+            >All</button
+          >
+          <button
+            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            >UI/UX</button
+          >
+          <button
+            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            >Mobile</button
+          >
+          <button
+            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            >Web</button
+          >
         </div>
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-x-10">
-      {projects.map((project, index) => (
-        <div class={`project-card group relative flex flex-col gap-6 opacity-0 translate-y-8 md:col-span-6 md:mt-12`}>
-          <div class="relative overflow-hidden rounded-[2rem] aspect-[4/2] w-full bg-gray-200 cursor-none">
-            <img 
-              src={project.image} 
-              alt={project.title}
-              class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-            />
-            <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center">
-              <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">View Case Study</span>
+      {
+        projects.map((project, index) => (
+          <div
+            class={`project-card group relative flex flex-col gap-6 opacity-0 translate-y-8 md:col-span-6 md:mt-12`}>
+            <div class="relative overflow-hidden rounded-[2rem] aspect-[4/2] w-full bg-gray-200 cursor-none">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+              />
+              <a href={project.link}>
+                <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center">
+                  <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    View Case Study
+                  </span>
+                </div>
+              </a>
+            </div>
+
+            <div class="flex justify-between items-start border-t border-dark/10 pt-6">
+              <div>
+                <h3 class="text-3xl font-serif text-dark group-hover:text-coral transition-colors">
+                  {project.title}
+                </h3>
+                <p class="text-sm font-sans uppercase tracking-wider text-dark/60 mt-1">
+                  {project.category}
+                </p>
+              </div>
+              <span class="font-serif text-xl text-dark/40">
+                {project.year}
+              </span>
             </div>
           </div>
-          
-          <div class="flex justify-between items-start border-t border-dark/10 pt-6">
-            <div>
-              <h3 class="text-3xl font-serif text-dark group-hover:text-coral transition-colors">{project.title}</h3>
-              <p class="text-sm font-sans uppercase tracking-wider text-dark/60 mt-1">{project.category}</p>
-            </div>
-            <span class="font-serif text-xl text-dark/40">{project.year}</span>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </section>
 
   <script>
-    document.addEventListener('astro:page-load', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('opacity-0', 'translate-y-8');
-            entry.target.classList.add('transition-all', 'duration-1000', 'ease-out');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1
-      });
-    
-      document.querySelectorAll('.project-card').forEach((card, index) => {
+    document.addEventListener("astro:page-load", () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-8");
+              entry.target.classList.add(
+                "transition-all",
+                "duration-1000",
+                "ease-out",
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        },
+      );
+
+      document.querySelectorAll(".project-card").forEach((card, index) => {
         setTimeout(() => {
-           observer.observe(card);
+          observer.observe(card);
         }, index * 100); // Staggered start
       });
     });
