@@ -1,39 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import { Picture } from "astro:assets";
-import Sectionhead from "@components/sectionhead.astro";
-
-const projects = [
-  {
-    title: "NGO Fundraising Website",
-    category: "Web Design",
-    image: "/ngo-thumbnail.png",
-    link: "https://www.behance.net/gallery/243051159/Modern-website-for-an-Indian-NGO/modules/1402104831",
-    year: "2025",
-  },
-  {
-    title: "Whatsapp UX Redesign",
-    category: "Mobile UX",
-    image: "/placeholder.jpg",
-    link: "https://www.loom.com/share/b70f298997a44589a7b0bb1b203f32ed",
-    year: "2024",
-  },
-  {
-    title: "Linear.app redesign",
-    category: "Design Practice",
-    image: "/linear-thumbnail.png",
-    link: "https://www.behance.net/gallery/243048601/Replicated-Linearapp/modules/1402102205",
-    year: "2025",
-  },
-  {
-    title: "Medical Appointment App",
-    category: "Product Design",
-    image: "/medical-thumbnail.png",
-    link: "https://www.behance.net/gallery/243049783/Mobile-App-Design/modules/1402096967",
-    year: "2025",
-  },
-];
+import { projects } from "../data/projects.js";
 ---
 
 <Layout title="Work">
@@ -52,19 +19,23 @@ const projects = [
         >
         <div class="flex gap-4">
           <button
-            class="text-dark font-sans text-sm uppercase tracking-widest border-b border-dark"
+            data-filter="All"
+            class="filter-btn text-dark font-sans text-sm uppercase tracking-widest border-b border-dark transition-colors"
             >All</button
           >
           <button
-            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            data-filter="UI/UX"
+            class="filter-btn text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
             >UI/UX</button
           >
           <button
-            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            data-filter="Mobile"
+            class="filter-btn text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
             >Mobile</button
           >
           <button
-            class="text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
+            data-filter="Web"
+            class="filter-btn text-dark/40 hover:text-dark transition-colors font-sans text-sm uppercase tracking-widest"
             >Web</button
           >
         </div>
@@ -74,21 +45,35 @@ const projects = [
     <div class="grid grid-cols-1 md:grid-cols-12 gap-y-24 md:gap-x-10">
       {
         projects.map((project, index) => (
-          <div
-            class={`project-card group relative flex flex-col gap-6 opacity-0 translate-y-8 md:col-span-6 md:mt-12`}>
+          <div data-category={project.category} class="project-card group relative flex flex-col gap-6 opacity-0 translate-y-8 md:col-span-6 md:mt-12">
             <div class="relative overflow-hidden rounded-[2rem] aspect-[4/2] w-full bg-gray-200 cursor-none">
               <img
                 src={project.image}
                 alt={project.title}
                 class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
               />
-              <a href={project.link}>
+
+              {(project.casestudy || project.link) && (
                 <div class="absolute inset-0 bg-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px] flex items-center justify-center">
-                  <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    View Case Study
-                  </span>
+                  <div class="flex gap-4">
+                    {project.casestudy && (
+                      <a href={project.casestudy}>
+                        <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          Case Study
+                        </span>
+                      </a>
+                    )}
+
+                    {project.link && (
+                      <a href={project.link}>
+                        <span class="bg-white/90 text-dark px-6 py-3 rounded-full font-sans uppercase tracking-widest text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                          View Project
+                        </span>
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </a>
+              )}
             </div>
 
             <div class="flex justify-between items-start border-t border-dark/10 pt-6">
@@ -135,6 +120,45 @@ const projects = [
         setTimeout(() => {
           observer.observe(card);
         }, index * 100); // Staggered start
+      });
+
+      // Filter Logic
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const projectCards = document.querySelectorAll(".project-card");
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => {
+            b.classList.remove("border-b", "border-dark");
+            b.classList.add("text-dark/40");
+            b.classList.remove("text-dark");
+          });
+          btn.classList.add("border-b", "border-dark", "text-dark");
+          btn.classList.remove("text-dark/40");
+
+          const filter = btn.getAttribute("data-filter");
+          
+          projectCards.forEach(card => {
+            const category = card.getAttribute("data-category");
+            let show = false;
+            if (filter === "All") show = true;
+            else if (filter === "UI/UX" && (category === "Product Design" || category === "Design Practice")) show = true;
+            else if (filter === "Mobile" && category === "Mobile UX") show = true;
+            else if (filter === "Web" && category === "Web Design") show = true;
+
+            if (show) {
+              card.style.display = "flex";
+              setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+              }, 50);
+            } else {
+              card.style.display = "none";
+              card.style.opacity = "0";
+              card.style.transform = "translateY(8px)";
+            }
+          });
+        });
       });
     });
   </script>

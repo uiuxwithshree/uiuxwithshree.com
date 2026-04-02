@@ -31,6 +31,25 @@ const makeTitle = title ? `${title} | Shree` : "Shree | UI/UX Designer";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
+    
     <script>
       import Lenis from 'lenis'
 
@@ -44,7 +63,7 @@ const makeTitle = title ? `${title} | Shree` : "Shree | UI/UX Designer";
       requestAnimationFrame(raf)
     </script>
   </head>
-  <body class="bg-cream text-dark antialiased overflow-x-hidden selection:bg-coral selection:text-white">
+  <body class="bg-cream text-dark dark:bg-dark dark:text-cream transition-colors duration-300 antialiased overflow-x-hidden selection:bg-coral selection:text-white">
     <CustomCursor />
     <Navbar />
     <slot />
@@ -86,6 +105,36 @@ const makeTitle = title ? `${title} | Shree` : "Shree | UI/UX Designer";
       body {
         font-family: 'DM Sans', sans-serif;
       }
+
+      /* Dark Mode Global Overrides */
+      html.dark .text-dark { color: #FBF5EE; }
+      html.dark .text-dark\/90 { color: rgba(251,245,238,0.9); }
+      html.dark .text-dark\/80 { color: rgba(251,245,238,0.8); }
+      html.dark .text-dark\/70 { color: rgba(251,245,238,0.7); }
+      html.dark .text-dark\/60 { color: rgba(251,245,238,0.6); }
+      html.dark .text-dark\/50 { color: rgba(251,245,238,0.5); }
+      html.dark .text-dark\/40 { color: rgba(251,245,238,0.4); }
+      html.dark .text-dark\/30 { color: rgba(251,245,238,0.3); }
+      html.dark .text-dark\/20 { color: rgba(251,245,238,0.2); }
+      html.dark .text-dark\/10 { color: rgba(251,245,238,0.1); }
+      html.dark .text-dark\/5 { color: rgba(251,245,238,0.05); }
+      
+      html.dark .border-dark { border-color: #FBF5EE; }
+      html.dark .border-dark\/50 { border-color: rgba(251,245,238,0.5); }
+      html.dark .border-dark\/40 { border-color: rgba(251,245,238,0.4); }
+      html.dark .border-dark\/30 { border-color: rgba(251,245,238,0.3); }
+      html.dark .border-dark\/20 { border-color: rgba(251,245,238,0.2); }
+      html.dark .border-dark\/10 { border-color: rgba(251,245,238,0.1); }
+      html.dark .border-dark\/5 { border-color: rgba(251,245,238,0.05); }
+      
+      html.dark .bg-gray-200 { background-color: rgba(255,255,255,0.05); }
+      html.dark .bg-white { background-color: #2A2A2A; color: #FBF5EE; }
+      html.dark .bg-white\/90 { background-color: rgba(42,42,42,0.9); color: #FBF5EE; }
+      html.dark .bg-white\/10 { background-color: rgba(255,255,255,0.05); }
+      html.dark .bg-cream { background-color: #1A1A1A; }
+      
+      html.dark .hover\:text-dark:hover { color: #FBF5EE; }
+      html.dark .group:hover .group-hover\:text-dark { color: #FBF5EE; }
     </style>
   </body>
 </html>

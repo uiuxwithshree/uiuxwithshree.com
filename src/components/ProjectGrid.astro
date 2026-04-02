@@ -1,31 +1,6 @@
 ---
-const projects = [
-  {
-    title: "NGO Fundraising Website",
-    category: "Web Design",
-    image: "/ngo-thumbnail.png",
-    link: "https://www.behance.net/gallery/243051159/Modern-website-for-an-Indian-NGO/modules/1402104831"
-  },
-  {
-    title: "Whatsapp UX Redesign",
-    category: "Mobile UX",
-    image: "/placeholder.jpg",
-    size: "small",
-    link: "https://www.loom.com/share/b70f298997a44589a7b0bb1b203f32ed"
-  },
-  {
-    title: "Linear.app redesign",
-    category: "Design Practice",
-    image: "/linear-thumbnail.png",
-    link: "https://www.behance.net/gallery/243048601/Replicated-Linearapp/modules/1402102205"
-  },
-   {
-    title: "Medical Appointment App",
-    category: "Product Design",
-    image: "/medical-thumbnail.png",
-    link: "https://www.behance.net/gallery/243049783/Mobile-App-Design/modules/1402096967"
-  },
-];
+import { projects } from "../data/projects.js";
+const topProjects = projects.slice(0, 2);
 ---
 
 <section id="work" class="py-20 px-4 md:px-16 max-w-7xl mx-auto">
@@ -35,7 +10,7 @@ const projects = [
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-8">
-    {projects.map((project, index) => (
+    {topProjects.map((project, index) => (
       <div class={`project-card opacity-0 translate-y-8 transition-all duration-1000 ease-out group relative flex flex-col gap-4 md:col-span-6 md:mt-10`}>
         <div class="relative overflow-hidden rounded-[2rem] aspect-[2/1] w-full bg-gray-200">
           <img 
