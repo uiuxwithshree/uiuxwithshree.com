@@ -35,7 +35,7 @@ export default function Carousel() {
         <span className="mb-3 block text-[11px] font-semibold tracking-[0.12em] text-[#9e9b93] uppercase">
           Through the lens
         </span>
-        <h2 className="font-syne text-[clamp(36px,5vw,64px)] leading-none font-extrabold tracking-[-0.03em]">
+        <h2 className="font-playfair italic text-[clamp(36px,5vw,64px)] leading-none font-extrabold tracking-[-0.03em]">
           Glimpses of life &<br />UI explorations
         </h2>
       </div>

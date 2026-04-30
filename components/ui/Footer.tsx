@@ -26,35 +26,26 @@ export default function Footer() {
       id="footer"
       className="sticky bottom-0 z-0 overflow-hidden bg-[#5A39ED] px-[clamp(24px,6vw,80px)] pt-[clamp(60px,10vw,80px)] pb-10 text-white"
     >
-      <div
+      {/* <div
         aria-hidden
-        className="font-syne pointer-events-none absolute right-[-30px] bottom-[-60px] select-none text-[clamp(160px,12vw,280px)] leading-none font-extrabold tracking-[-0.05em] text-white/4"
+        className="font-yatraone pointer-events-none absolute right-[30px] top-[60px] select-none text-[clamp(260px,12vw,280px)] leading-none font-extrabold  text-white/4"
       >
-        श्री / Shree
-      </div>
+        श्री
+      </div> */}
 
-      <div className="mb-10 grid grid-cols-1 items-end gap-10 border-b border-white/8 pb-[60px] lg:grid-cols-2">
+      <div className="mb-10 grid grid-cols-1 items-center gap-10 border-b border-white/8 pb-[60px] lg:grid-cols-2">
         <div>
-          <h2 className="font-syne mb-5 text-[clamp(48px,7vw,96px)] leading-[0.9] font-extrabold tracking-[-0.04em]">
+          <h2 className="font-syne mb-7 text-[clamp(48px,7vw,96px)] leading-[0.9] font-extrabold tracking-[-0.04em]">
             Let&apos;s
             <br />
             <span className="text-[#ffffff]">Connect</span>
           </h2>
           <Link
             href="mailto:uiuxwithshree@gmail.com"
-            className="block text-[15px] text-white/45 no-underline transition-colors hover:text-white"
+            className="block text-[25px] text-white/45 no-underline transition-colors hover:text-white mb-5"
           >
             uiuxwithshree@gmail.com ↗
           </Link>
-        </div>
-
-        <div>
-          <p className="font-sans mb-1 text-[13px] text-white/35 italic">
-            Product Designer
-          </p>
-          <p className="font-display mb-7 text-[34px] text-white/75 italic">
-            Shree Chaurasia
-          </p>
           <div className="flex flex-wrap gap-2.5">
             {socialLinks.map((s) => (
               <Link
@@ -69,6 +60,12 @@ export default function Footer() {
             ))}
           </div>
         </div>
+        <div
+        aria-hidden
+        className="font-yatraone pointer-events-none absolute right-40 top-30 select-none text-[clamp(260px,12vw,280px)] leading-none font-extrabold  text-white/10"
+      >
+        श्री
+      </div> 
       </div>
 
       <div className="mb-10 overflow-hidden">
@@ -87,7 +84,7 @@ export default function Footer() {
 
       <div className="relative z-[1] flex flex-wrap items-center justify-between gap-3 text-xs text-white/25">
         <span>© 2026 Shree Chaurasia. All rights reserved.</span>
-        <span>Made with care in India 🫶</span>
+        <span>Made with love in India 🫶</span>
       </div>
     </footer>
   )

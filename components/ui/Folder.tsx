@@ -23,9 +23,9 @@ const vibeProjects: VibeProject[] = [
   { emoji: '01', title: 'Micro Interaction Kit', desc: 'Delightful UI animations built in Framer.', link: '#', color: '#fff3c4' },
   { emoji: '02', title: 'Scroll Parallax Page', desc: 'Depth and layers using pure CSS scroll.', link: '#', color: '#d6f5e8' },
   { emoji: '03', title: 'Design Tokens UI', desc: 'Live token explorer for a design system.', link: '#', color: '#d4e9ff' },
-  { emoji: '04', title: '3D Card Hover', desc: 'CSS perspective tilt-on-hover cards.', link: '#', color: '#ece6ff' },
-  { emoji: '05', title: 'Liquid Button', desc: 'SVG morphing satisfying button states.', link: '#', color: '#ffe4d6' },
-  { emoji: '06', title: 'Grid Builder', desc: 'Drag-and-drop bento grid playground.', link: '#', color: '#d6f5e8' },
+//   { emoji: '04', title: '3D Card Hover', desc: 'CSS perspective tilt-on-hover cards.', link: '#', color: '#ece6ff' },
+//   { emoji: '05', title: 'Liquid Button', desc: 'SVG morphing satisfying button states.', link: '#', color: '#ffe4d6' },
+//   { emoji: '06', title: 'Grid Builder', desc: 'Drag-and-drop bento grid playground.', link: '#', color: '#d6f5e8' },
 ]
 
 const darkenColor = (hex: string, percent: number): string => {
@@ -63,6 +63,9 @@ function ReactBitsFolder({
   const [paperOffsets, setPaperOffsets] = useState(
     Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
   )
+  const [paperLift, setPaperLift] = useState(
+    Array.from({ length: maxItems }, () => 0)
+  )
 
   const folderBackColor = darkenColor(color, 0.08)
   const paperColors = [darkenColor('#ffffff', 0.1), darkenColor('#ffffff', 0.05), '#ffffff']
@@ -71,6 +74,7 @@ function ReactBitsFolder({
     setOpen((prev) => !prev)
 
     if (open) {
+      setPaperLift(Array.from({ length: maxItems }, () => 0))
       setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })))
     }
   }
@@ -88,14 +92,27 @@ function ReactBitsFolder({
     setPaperOffsets((prev) => {
       const next = [...prev]
       next[index] = {
-        x: (e.clientX - centerX) * 0.15,
-        y: (e.clientY - centerY) * 0.15,
+        x: (e.clientX - centerX) * 0.06,
+        y: (e.clientY - centerY) * 0.06,
       }
       return next
     })
   }
 
+  const handlePaperMouseEnter = (index: number) => {
+    setPaperLift((prev) => {
+      const next = [...prev]
+      next[index] = 1
+      return next
+    })
+  }
+
   const handlePaperMouseLeave = (index: number) => {
+    setPaperLift((prev) => {
+      const next = [...prev]
+      next[index] = 0
+      return next
+    })
     setPaperOffsets((prev) => {
       const next = [...prev]
       next[index] = { x: 0, y: 0 }
@@ -104,9 +121,9 @@ function ReactBitsFolder({
   }
 
   const getOpenTransform = (index: number) => {
-    if (index === 0) return 'translate(-120%, -70%) rotate(-15deg)'
-    if (index === 1) return 'translate(10%, -70%) rotate(15deg)'
-    return 'translate(-50%, -100%) rotate(5deg)'
+    if (index === 0) return 'translate(-145%, -62%) rotate(-12deg)'
+    if (index === 1) return 'translate(-50%, -112%) rotate(0deg)'
+    return 'translate(45%, -62%) rotate(12deg)'
   }
 
   return (
@@ -138,21 +155,23 @@ function ReactBitsFolder({
             ][index]
 
             const transform = open
-              ? `${getOpenTransform(index)} translate(${paperOffsets[index].x}px, ${paperOffsets[index].y}px)`
+              ? `${getOpenTransform(index)} translate(${paperOffsets[index].x}px, ${paperOffsets[index].y - paperLift[index] * 10}px) scale(${1 + paperLift[index] * 0.08})`
               : undefined
 
             return (
               <div
                 key={index}
+                onMouseEnter={() => handlePaperMouseEnter(index)}
                 onMouseMove={(e) => handlePaperMouseMove(e, index)}
                 onMouseLeave={() => handlePaperMouseLeave(index)}
-                className={`absolute bottom-[10%] left-1/2 z-20 overflow-hidden rounded-[10px] transition-all duration-300 ease-in-out ${
+                className={`absolute bottom-[10%] left-1/2 overflow-hidden rounded-[10px] shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-500 ease-out ${
                   open
-                    ? 'hover:scale-110'
+                    ? ''
                     : '-translate-x-1/2 translate-y-[10%] group-hover:translate-y-0'
                 } ${sizeClasses}`}
                 style={{
                   ...(open ? { transform } : {}),
+                  zIndex: open ? 20 + index + Math.round(paperLift[index] * 20) : 20,
                   backgroundColor: paperColors[index],
                 }}
               >
@@ -187,6 +206,7 @@ function ReactBitsFolder({
 
 function Folder({ projects }: { projects: VibeProject[] }) {
   const [open, setOpen] = useState(false)
+  const showProjectCards = projects.length > 3
   const previewItems = projects.slice(0, 3).map((project) => (
     <div
       key={project.title}
@@ -201,44 +221,51 @@ function Folder({ projects }: { projects: VibeProject[] }) {
   ))
 
   return (
-    <div className="flex w-full flex-col items-center gap-12">
-      <div onClick={() => setOpen((prev) => !prev)}>
+    <div className="flex w-full flex-col items-center">
+      <div
+        className="flex h-[340px] w-full items-end justify-center pb-10"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <ReactBitsFolder color="#c8f135" size={2.1} items={previewItems} />
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            transition={{ duration: 0.28 }}
-            className="grid w-full grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-4"
-          >
-            {projects.map((project, index) => (
+      {showProjectCards && (
+        <div className="relative min-h-[360px] w-full">
+          <AnimatePresence>
+            {open && (
               <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 16, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: index * 0.05, type: 'spring', stiffness: 300, damping: 24 }}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ duration: 0.28 }}
+                className="absolute inset-x-0 top-0 grid w-full grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-4"
               >
-                <Link href={project.link} className="block h-full text-inherit no-underline">
-                  <div
-                    className="h-full rounded-lg border border-black/5 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_38px_rgba(0,0,0,0.09)]"
-                    style={{ background: project.color }}
+                {projects.map((project, index) => (
+                  <motion.div
+                    key={project.title}
+                    initial={{ opacity: 0, y: 16, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: index * 0.05, type: 'spring', stiffness: 300, damping: 24 }}
                   >
-                    <div className="mb-4 text-[13px] font-bold text-[#0d0d0d]">{project.emoji}</div>
-                    <div className="font-syne mb-2 text-[16px] leading-tight font-bold">
-                      {project.title}
-                    </div>
-                    <p className="text-[13px] leading-[1.55] text-[#5c5a54]">{project.desc}</p>
-                  </div>
-                </Link>
+                    <Link href={project.link} className="block h-full text-inherit no-underline">
+                      <div
+                        className="h-full rounded-lg border border-black/5 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_38px_rgba(0,0,0,0.09)]"
+                        style={{ background: project.color }}
+                      >
+                        <div className="mb-4 text-[13px] font-bold text-[#0d0d0d]">{project.emoji}</div>
+                        <div className="font-syne mb-2 text-[16px] leading-tight font-bold">
+                          {project.title}
+                        </div>
+                        <p className="text-[13px] leading-[1.55] text-[#5c5a54]">{project.desc}</p>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,17 +1,33 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import {
+  Cedarville_Cursive,
   Covered_By_Your_Grace,
   DM_Serif_Display,
   Instrument_Sans,
   Playfair_Display,
   Syne,
+  Yatra_One,
 } from 'next/font/google'
 
 const handwriting = Covered_By_Your_Grace({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-handwriting',
+  display: 'swap',
+})
+
+const yatraOne = Yatra_One({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-yatra',
+  display: 'swap',
+})
+
+const cedarville = Cedarville_Cursive({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-cedarville',
   display: 'swap',
 })
 
@@ -60,6 +76,8 @@ export default function RootLayout({
     syne.variable,
     handwriting.variable,
     playfair.variable,
+    yatraOne.variable,
+    cedarville.variable,
   ].join(' ')
 
   return (

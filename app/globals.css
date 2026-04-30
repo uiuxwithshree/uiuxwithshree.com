@@ -46,6 +46,12 @@ html {
 .font-playfair {
   font-family: var(--font-playfair), Georgia, serif;
 }
+.font-yatraone {
+  font-family: var(--font-yatra), Arial, sans-serif;
+}
+.font-cedarville {
+  font-family: var(--font-cedarville), cursive;
+}
 
 /* Animations */
 @keyframes pulse-dot {
