@@ -49,9 +49,17 @@ const stickers = [
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const stickerRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (window.innerWidth < 768) return
+    if (isMobile) return
 
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -64,7 +72,7 @@ export default function Hero() {
       const d = stickers[i].depth
       el.style.transform = `translate(${cx * d * -1}px, ${cy * d * -1}px)`
     })
-  }, [])
+  }, [isMobile])
 
   const handleMouseLeave = useCallback(() => {
     stickerRefs.current.forEach((el) => {
@@ -144,7 +152,10 @@ export default function Hero() {
           style={{
             transition: 'transform 0.12s cubic-bezier(0.23, 1, 0.32, 1)',
           }}
-          className={`absolute z-10 ${s.className} animate-float md:animate-none`}
+          className={`
+            absolute z-10 ${s.className}
+            ${isMobile ? 'animate-[float_6s_ease-in-out_infinite]' : ''}
+          `}
         >
           <div className="relative h-full w-full">
             <Image src={s.src} alt={s.alt} fill className="object-contain" />
@@ -154,6 +165,14 @@ export default function Hero() {
 
       {/* Grain */}
       <div className="grain-overlay pointer-events-none absolute inset-0 z-20 opacity-40" />
+
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
     </section>
   )
 }
