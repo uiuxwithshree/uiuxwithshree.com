@@ -1,56 +1,78 @@
 'use client'
 
 import Image from 'next/image'
-import { useRef, useCallback } from 'react'
+import { useRef, useCallback, useEffect, useState } from 'react'
 
 const stickers = [
   {
     alt: 'Sushi sticker',
     src: '/images/sushi.png',
-    // depth: how strongly this sticker reacts (higher = more movement)
     depth: 18,
-    className: 'bottom-[1%] left-[8%] rotate-[8deg] w-32 h-32 md:w-48 md:h-48',
+    className: `
+      bottom-[4%] left-[4%]
+      w-[clamp(100px,12vw,140px)] h-[clamp(100px,12vw,140px)]
+      rotate-[8deg]
+    `,
   },
   {
     alt: 'Suitcase sticker',
     src: '/images/suitcase.png',
     depth: 10,
-    className: 'right-[46%] top-[12%] -rotate-[10deg] w-16 h-16 md:w-30 md:h-30',
+    className: `
+      right-[5%] top-[10%]
+      w-[clamp(70px,10vw,100px)] h-[clamp(70px,10vw,100px)]
+      -rotate-[10deg]
+    `,
   },
   {
     alt: 'Figma sticker',
     src: '/images/figma.png',
     depth: 14,
-    className: 'bottom-[18%] right-[8%] -rotate-[6deg] w-20 h-20 md:w-28 md:h-28',
+    className: `
+      bottom-[12%] right-[5%]
+      w-[clamp(50px,10vw,120px)] h-[clamp(50px,10vw,120px)]
+      -rotate-[6deg]
+    `,
   },
   {
     alt: 'Book sticker',
     src: '/images/book.png',
     depth: 22,
-    className: 'top-[18%] left-[5%] rotate-[7deg] w-24 h-24 md:w-40 md:h-40',
+    className: `
+      top-[12%] left-[6%]
+      w-[clamp(70px,12vw,150px)] h-[clamp(70px,12vw,150px)]
+      rotate-[7deg]
+    `,
   },
 ]
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  // Hold refs to each sticker wrapper DOM node
   const stickerRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (isMobile) return
+
     const rect = sectionRef.current?.getBoundingClientRect()
     if (!rect) return
 
-    // Normalised -0.5 → 0.5 relative to section center
     const cx = (e.clientX - rect.left) / rect.width - 0.5
     const cy = (e.clientY - rect.top) / rect.height - 0.5
 
     stickerRefs.current.forEach((el, i) => {
       if (!el) return
       const d = stickers[i].depth
-      // Translate opposite to cursor for parallax feel
       el.style.transform = `translate(${cx * d * -1}px, ${cy * d * -1}px)`
     })
-  }, [])
+  }, [isMobile])
 
   const handleMouseLeave = useCallback(() => {
     stickerRefs.current.forEach((el) => {
@@ -69,19 +91,17 @@ export default function Hero() {
                  px-6 sm:px-10 md:px-16 lg:px-[clamp(24px,6vw,80px)]
                  pt-[clamp(100px,12vw,140px)] pb-20"
     >
-      {/* Radial grid background */}
+      {/* Background */}
       <div
         className="pointer-events-none absolute inset-0 z-0 opacity-40
-          bg-[image:radial-gradient(circle_at_center,transparent_30%,white_100%),linear-gradient(#e8e6e0_1px,transparent_1px),linear-gradient(90deg,#e8e6e0_1px,transparent_1px)]
-          bg-[size:100%_100%,40px_40px,40px_40px]"
+        bg-[radial-gradient(circle_at_center,transparent_30%,white_100%),linear-gradient(#e8e6e0_1px,transparent_1px),linear-gradient(90deg,#e8e6e0_1px,transparent_1px)]"
       />
 
-      {/* Content wrapper */}
+      {/* Content */}
       <div className="relative z-10 flex w-full max-w-6xl flex-col items-center gap-12 md:flex-row md:items-center md:justify-center md:gap-10">
 
-        {/* Left — Text */}
+        {/* Left */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left">
-          {/* Status badge */}
           <div className="animate-fade-up delay-100 mb-7 inline-flex w-fit items-center gap-2 rounded-full border border-[#e8e6e0] bg-white px-3.5 py-1.5 text-xs text-[#5c5a54]">
             <span className="animate-pulse-dot inline-block size-1.75 rounded-full bg-[#2d9e2d]" />
             Available for freelance & full-time
@@ -105,13 +125,13 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Right — Polaroid photo */}
+        {/* Right */}
         <div className="animate-fade-up delay-500 flex shrink-0 items-center justify-center">
           <div className="relative rotate-3 transition-transform duration-300 hover:rotate-1 hover:scale-[1.02]">
             <div className="relative w-64 bg-white p-4 py-8 shadow-[0_20px_40px_rgba(0,0,0,0.2)] sm:w-72 md:w-80 lg:w-90">
               <div className="relative h-64 w-full overflow-hidden bg-black sm:h-72 md:h-80 lg:h-90">
                 <Image
-                  src="/images/photo.jpeg"
+                  src="/images/hero.jpeg"
                   alt="Profile picture"
                   fill
                   className="object-cover"
@@ -124,25 +144,35 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Stickers — absolute positioned, parallax via inline transform */}
+      {/* Stickers */}
       {stickers.map((s, i) => (
         <div
           key={s.src}
           ref={(el) => { stickerRefs.current[i] = el }}
-          // transition gives the smooth spring-like lag
-          style={{ transition: 'transform 0.12s cubic-bezier(0.23, 1, 0.32, 1)' }}
-          className={`absolute z-10 ${s.className}`}
+          style={{
+            transition: 'transform 0.12s cubic-bezier(0.23, 1, 0.32, 1)',
+          }}
+          className={`
+            absolute z-10 ${s.className}
+            ${isMobile ? 'animate-[float_6s_ease-in-out_infinite]' : ''}
+          `}
         >
-          {/* Extra rotation wrapper so rotate class isn't overridden by style transform */}
           <div className="relative h-full w-full">
             <Image src={s.src} alt={s.alt} fill className="object-contain" />
           </div>
         </div>
       ))}
 
-      {/* Grain overlay */}
+      {/* Grain */}
       <div className="grain-overlay pointer-events-none absolute inset-0 z-20 opacity-40" />
-      
+
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
     </section>
   )
 }

@@ -79,11 +79,11 @@ html {
 }
 
 .animate-scroll-left {
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 240s linear infinite;
 }
 
 .animate-ticker {
-  animation: ticker-scroll 12s linear infinite;
+  animation: ticker-scroll 60s linear infinite;
 }
 
 .animate-fade-up {
