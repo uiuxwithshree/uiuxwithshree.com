@@ -214,7 +214,7 @@ export default function SpotifyCard() {
             {t.artist}
           </div>
           <Link
-            href={t.songUrl}
+            href={t.songUrl || '#'}
             target="_blank"
             className="mt-2 inline-flex items-center gap-1 no-underline hover:underline"
             style={{ fontSize: '11px', color: '#1DB954' }}
