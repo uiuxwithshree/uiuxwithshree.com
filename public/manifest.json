@@ -1,0 +1,16 @@
+{
+  "name": "Shree Chaurasia - Product Designer",
+  "short_name": "Shree Portfolio",
+  "description": "Product Designer portfolio showcasing UI/UX work and projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#5A39ED",
+  "theme_color": "#5A39ED",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
