@@ -5,10 +5,10 @@ import Link from "next/link"
 import { useState } from "react"
 
 const BOOK = {
-  title: 'The Mountain is You',
-  author: 'Brianna Wiest',
-  coverUrl: 'https://covers.openlibrary.org/b/isbn/9781949759228-L.jpg',
-  openLibraryUrl: 'https://openlibrary.org/works/OL25436364W',
+  title: 'Pride and Prejudice',
+  author: 'Jane Austen',
+  coverUrl: 'https://covers.openlibrary.org/b/id/14858485-L.jpg',
+  openLibraryUrl: 'https://openlibrary.org/works/OL50998784M',
 }
 
 function BookCard() {
