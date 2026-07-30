@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { profile } from "@/lib/site";
+// @ts-ignore
 import "./globals.css";
 import Cursor from "@/components/ui/Cursor";
 

@@ -39,18 +39,35 @@ export default function CaseStudy({ study }: { study: CaseStudyType }) {
         </p>
       </Reveal>
 
-      {study.externalHref && (
-        <Reveal delay={120}>
-          <a
-            href={study.externalHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-ghost mt-5"
-          >
-            Original write-up on Notion ↗
-          </a>
-        </Reveal>
-      )}
+      <div className="mt-6 flex flex-wrap gap-3">
+        {study.externalHref && (
+          <Reveal delay={120}>
+            <a
+              href={study.externalHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost mt-5"
+            >
+              Original write-up on Notion ↗
+            </a>
+          </Reveal>
+        )}
+
+        {study.figmaHref && (
+          <Reveal delay={140}>
+            <a
+              href={study.figmaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-solid mt-5"
+            >
+              Figma design files ↗
+            </a>
+          </Reveal>
+        )}
+      </div>
+
+
 
       <Reveal delay={140}>
         <dl className="mt-8 grid grid-cols-1 gap-x-6 gap-y-4 border-y border-line py-6 min-[380px]:grid-cols-2 sm:grid-cols-4">
@@ -131,10 +148,10 @@ export default function CaseStudy({ study }: { study: CaseStudyType }) {
         <Reveal>
           <p className="eyebrow">03 · The screens</p>
         </Reveal>
-        <div className="mt-6 flex gap-5 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
+        <div className="mt-6 flex gap-5 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible ">
           {study.screens.map((screen, i) => (
             <Reveal key={screen.label} delay={i * 60}>
-              <ScreenPlaceholder label={screen.label} caption={screen.caption} tone={screen.tone} />
+              <ScreenPlaceholder label={screen.label} caption={screen.caption} tone={screen.tone} img={screen.img} />
             </Reveal>
           ))}
         </div>

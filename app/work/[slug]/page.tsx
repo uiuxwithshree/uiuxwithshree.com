@@ -62,7 +62,7 @@ export default async function CaseStudyPage({ params }: PageParams) {
             <p className="eyebrow">Next</p>
             <Link
               href={`/work/${next.slug}`}
-              className="lift group mt-3 inline-flex max-w-full items-center gap-2 font-display text-xl font-medium tracking-tight [overflow-wrap:anywhere] md:text-2xl"
+              className="group hover:text-coral mt-3 inline-flex max-w-full items-center gap-2 font-display text-xl font-medium tracking-tight [overflow-wrap:anywhere] md:text-2xl"
             >
               {next.title.split("—")[0].trim()}
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">

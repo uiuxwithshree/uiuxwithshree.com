@@ -26,11 +26,12 @@ export interface CaseStudy {
   coreIdeaEyebrow: string;
   coreIdea: string; // the one-sentence reframe, first few words get the marker highlight
   coreIdeaHighlight: string; // the exact substring of coreIdea to highlight
-  screens: { label: string; caption: string; tone: ChipColor }[];
+  screens: { label: string; caption: string; tone: ChipColor; img: string }[];
   impact: { value: string; label: string; detail: string }[];
   learningTitle: string;
   learningBody: string;
   externalHref?: string;
+  figmaHref?: string;
 }
 
 export const profile = {
@@ -160,24 +161,28 @@ export const caseStudies: CaseStudy[] = [
         caption:
           "The primary developer workspace combining AI conversations, repository navigation, and team collaboration.",
         tone: "sky",
+        img: "/ember-workspace.png",
       },
       {
         label: "Screen 02",
         caption:
           "Quick model switching between GPT, Claude, Gemini, and other LLMs without leaving the conversation.",
         tone: "coral",
+        img: "/ember-switch-model.png",
       },
       {
         label: "Screen 03",
         caption:
           "Team management workspace for viewing members, assigning access, and managing project collaborators.",
         tone: "mint",
+        img: "/ember-members.png",
       },
       {
         label: "Screen 04",
         caption:
           "File upload and code response experience with syntax-highlighted output inside the conversation.",
         tone: "lilac",
+        img: "/ember-code.png",
       },
     ],
 
@@ -209,13 +214,13 @@ export const caseStudies: CaseStudy[] = [
     learningBody:
       "Working through the complete product flow before opening Figma turned out to be the biggest win on Ember. Mapping onboarding, permissions, repository management, and collaboration exposed edge cases early and prevented expensive redesigns later. It reinforced that great product design starts with understanding the system, not polishing individual screens.",
 
-    externalHref:
-      "https://app.notion.com/p/uiuxwithshree/EMBER-Case-Study-3521f6b475fb81bcb4c7c5dd8b190662",
+    externalHref: "https://app.notion.com/p/uiuxwithshree/EMBER-Case-Study-3521f6b475fb81bcb4c7c5dd8b190662",
+    figmaHref: "https://www.figma.com/design/SrXu5AGCsqLuktdtrfJsRU/Ember---AI-based-Developer-Companion"
   },
   {
     slug: "stride",
     index: "02",
-    status: "shipped",
+    status: "in-progress",
     title: "Stride — exploring a unified fitness platform",
     thumbnail: "/stride.jpeg",
     oneLiner:
@@ -270,8 +275,8 @@ export const caseStudies: CaseStudy[] = [
     coreIdea: "Design for the shared system, not two separate apps.",
     coreIdeaHighlight: "the shared system, not two separate apps",
     screens: [
-      { label: "Sketch 01", caption: "Early exploration, [PLACEHOLDER caption]", tone: "mint" },
-      { label: "Sketch 02", caption: "Early exploration, [PLACEHOLDER caption]", tone: "sky" },
+      { label: "Sketch 01", caption: "Early exploration, [PLACEHOLDER caption]", tone: "mint", img: "/ember-screen-01.png" },
+      { label: "Sketch 02", caption: "Early exploration, [PLACEHOLDER caption]", tone: "sky", img: "/ember-screen-02.png" },
     ],
     impact: [
       { value: "In discovery", label: "current phase", detail: "problem space still being scoped" },
