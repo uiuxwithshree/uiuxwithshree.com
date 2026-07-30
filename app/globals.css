@@ -1,0 +1,382 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color tokens ---- */
+  --color-paper: #ffffff;
+  --color-ink: #14161a;
+  --color-ink-soft: #5a5f68;
+  --color-ink-faint: #9a9ea5;
+  --color-line: #e7e5e0;
+  --color-line-strong: #d6d3cc;
+  --color-accent: #ffd400;
+  --color-accent-ink: #14161a;
+  --color-panel: #f7f6f3;
+
+  /* ---- Playful supporting palette ----
+     Used sparingly: tag chips, stickers, avatar blob. Always paired with
+     --color-ink text on top, so contrast stays high regardless of the tint. */
+  --color-coral: #ff7a59;
+  --color-coral-tint: #fff1ec;
+  --color-sky: #3aa6ff;
+  --color-sky-tint: #eaf6ff;
+  --color-mint: #17b17c;
+  --color-mint-tint: #e9f9f1;
+  --color-lilac: #9b7bff;
+  --color-lilac-tint: #f4f0ff;
+
+  /* ---- Type ---- */
+  --font-display: "Space Grotesk", "Arial Narrow", sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+
+  /* ---- Layout ---- */
+  --container-page: 1160px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  /* Visible, high-contrast focus ring for keyboard users on every
+     interactive element — buttons, links, and the skip link. */
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 100;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    transition: top 0.2s ease;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .wrap {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wrap {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Marker highlight: a hand-inked highlighter stroke behind key words */
+  .mark {
+    position: relative;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .mark::before {
+    content: "";
+    position: absolute;
+    left: -0.15em;
+    right: -0.15em;
+    bottom: 0.05em;
+    top: 0.18em;
+    background: var(--color-accent);
+    transform: skew(-8deg) rotate(-0.6deg);
+    z-index: -1;
+    border-radius: 2px 6px 3px 8px / 6px 2px 8px 3px;
+    opacity: 0.92;
+  }
+
+  /* Reveal-on-scroll primitive */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  .hairline {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    max-width: 100%;
+    min-width: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+    padding: 0.7rem 1.15rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-ink);
+    overflow-wrap: anywhere;
+    text-align: center;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+  }
+
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-solid:hover {
+    background: var(--color-accent);
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+  }
+
+  .btn-ghost:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* ---- Colored tag chips ---- */
+  /* Tint background + ink text keeps contrast high no matter the hue. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .chip-coral { background: var(--color-coral-tint); }
+  .chip-sky { background: var(--color-sky-tint); }
+  .chip-mint { background: var(--color-mint-tint); }
+  .chip-lilac { background: var(--color-lilac-tint); }
+
+  .dot-coral { background: var(--color-coral); }
+  .dot-sky { background: var(--color-sky); }
+  .dot-mint { background: var(--color-mint); }
+  .dot-lilac { background: var(--color-lilac); }
+
+  /* ---- Hover-lift for cards / screens ---- */
+  .lift {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  }
+  .lift:hover,
+  .lift:focus-visible {
+    transform: translateY(-6px) rotate(-0.4deg);
+    box-shadow: 0 18px 34px -18px rgba(20, 22, 26, 0.28);
+  }
+
+  /* ---- Marquee (role strip / tools strip) ---- */
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 26s linear infinite;
+  }
+
+  .marquee:hover,
+  .marquee:focus-within {
+    animation-play-state: paused;
+  }
+
+  .marquee-track {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ---- Floating decorative stickers ---- */
+  .sticker {
+    position: absolute;
+    filter: drop-shadow(0 6px 14px rgba(20, 22, 26, 0.12));
+    animation: sticker-float 6s ease-in-out infinite;
+  }
+
+  @keyframes sticker-float {
+    0%, 100% { transform: translateY(0) rotate(var(--sticker-rot, -6deg)); }
+    50% { transform: translateY(-10px) rotate(var(--sticker-rot, -6deg)); }
+  }
+
+  /* ---- Avatar blob ---- */
+  .avatar-blob {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 42% 58% 63% 37% / 45% 39% 61% 55%;
+    background: linear-gradient(135deg, var(--color-sky-tint), var(--color-lilac-tint) 55%, var(--color-coral-tint));
+    border: 1.5px solid var(--color-ink);
+    animation: blob-morph 12s ease-in-out infinite;
+  }
+
+  @keyframes blob-morph {
+    0%, 100% { border-radius: 42% 58% 63% 37% / 45% 39% 61% 55%; }
+    50% { border-radius: 58% 42% 39% 61% / 55% 61% 39% 45%; }
+  }
+
+  /* ---- Marker draw-in: the highlighter stroke animates in on reveal ---- */
+  .reveal .mark::before {
+    transform-origin: left center;
+    transform: skew(-8deg) rotate(-0.6deg) scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: 0.3s;
+  }
+
+  .reveal-in .mark::before {
+    transform: skew(-8deg) rotate(-0.6deg) scaleX(1);
+  }
+
+  /* ---- Screen placeholder gradients (rotate through the palette) ---- */
+  .screen-coral { background: linear-gradient(155deg, var(--color-coral-tint), var(--color-panel)); }
+  .screen-sky { background: linear-gradient(155deg, var(--color-sky-tint), var(--color-panel)); }
+  .screen-mint { background: linear-gradient(155deg, var(--color-mint-tint), var(--color-panel)); }
+  .screen-lilac { background: linear-gradient(155deg, var(--color-lilac-tint), var(--color-panel)); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee,
+    .sticker,
+    .avatar-blob {
+      animation: none !important;
+    }
+    .cursor-label {
+      animation: none !important;
+    }
+  }
+}
+
+/* ---- Custom cursor ----
+     Activated via JS (CustomCursor.tsx) only on devices with a real
+     pointer. Any element with data-cursor="..." shows that text next
+     to the pointer while hovered — set it anywhere, it's fully dynamic. */
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  .cursor-follow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(-100px, -100px, 0);
+    transition: opacity 0.2s ease;
+    will-change: transform;
+  }
+
+  .cursor-follow-visible {
+    opacity: 1;
+  }
+
+  .cursor-arrow {
+    display: block;
+    flex: none;
+  }
+
+  .cursor-label {
+    margin-left: 0.6rem;
+    max-width: 240px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 24px -10px rgba(20, 22, 26, 0.45);
+    animation: cursor-label-in 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes cursor-label-in {
+    from { opacity: 0; transform: translate(-4px, 4px) scale(0.92); }
+    to { opacity: 1; transform: translate(0, 0) scale(1); }
+  }
+
+  /* No real pointer (touch) — never show the follower, and leave the
+     native cursor / tap behavior completely alone. */
+  @media (hover: none), (pointer: coarse) {
+    .cursor-follow {
+      display: none;
+    }
+  }
