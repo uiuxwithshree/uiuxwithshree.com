@@ -339,6 +339,18 @@ export const testimonials = [
     name: "Siddharth Singh",
     role: "Software Engineer, India",
   },
+  {
+    quote:
+      "Shree is a talented designer with a keen eye for detail. She consistently delivers high-quality work and is a pleasure to collaborate with.",
+    name: "Madan Sinha",
+    role: "Product Manager, India",
+  },
+  {
+    quote:
+    "Good work, I really like the way she designs and her approach to problem solving.",
+    name: "Marco Pereira",
+    role: "Product Designer, Portugal",
+  }
 ];
 
 export const contact = {

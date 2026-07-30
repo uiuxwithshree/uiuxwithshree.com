@@ -16,6 +16,7 @@ export default function Hero() {
     "Ciao! Come va?",
     "¡Hola! ¿Cómo estás?",
     "Bonjour ! Comment ça va ?",
+    "नमस्ते! आप कैसे हैं?"
   ];
 
   const getRandomGreeting = () =>
