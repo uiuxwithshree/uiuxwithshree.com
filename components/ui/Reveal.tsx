@@ -2,14 +2,20 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-interface RevealProps {
+interface RevealProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   delay?: number;
-  className?: string;
   as?: keyof React.JSX.IntrinsicElements;
 }
 
-export default function Reveal({ children, delay = 0, className = "", as = "div" }: RevealProps) {
+export default function Reveal({
+  children,
+  delay = 0,
+  className = "",
+  as = "div",
+  style,
+  ...props
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
   const Tag = as as any;
@@ -37,8 +43,9 @@ export default function Reveal({ children, delay = 0, className = "", as = "div"
   return (
     <Tag
       ref={ref}
+      {...props}
       className={`reveal ${visible ? "reveal-in" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ ...style, transitionDelay: `${delay}ms` }}
     >
       {children}
     </Tag>

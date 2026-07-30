@@ -9,7 +9,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudyType }) {
       <Link
         href={`/work/${study.slug}`}
         className="lift group grid rounded-2xl border border-line p-5 focus-visible:outline-offset-8 sm:p-7 md:min-h-full md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
-        data-cursor="Feel like reading?"
+        data-cursor={study.status === "shipped" ? "Read the full story" : "See what's in progress"}
       >
 
         <div className="min-w-0">
