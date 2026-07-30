@@ -17,7 +17,7 @@ npx serve out    # preview the exported site
 Every placeholder value is marked `[PLACEHOLDER]` inside **`lib/site.ts`** — that one file
 holds all the copy on the page. Nothing else needs to change.
 
-1. `profile` — real name, tagline, location, email, resume path, socials.
+1. `profile` — real name, tagline, location, email, résumé path, socials.
 2. `hero` — the one-line positioning statement.
 3. `caseStudies` — the two real projects: context, before/after, named problems,
    the core idea, screen captions, and real impact numbers. Swap the `ScreenPlaceholder`

@@ -23,7 +23,7 @@ export default function Contact() {
             {profile.email}
           </a>
           <a href={profile.resumeHref} className="btn btn-ghost">
-            Download resume
+            Download résumé
           </a>
         </div>
       </Reveal>

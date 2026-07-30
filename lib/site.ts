@@ -89,7 +89,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "ember",
     index: "01",
     status: "shipped",
-    title: "Ember — a GitHub-based AI workspace for dev teams",
+    title: "Ember",
     thumbnail: "/ember.jpeg",
     oneLiner:
       "Designed a GitHub-integrated AI workspace that helps developer teams collaborate, switch between LLMs, and get project-aware answers without leaving their workflow.",
@@ -221,7 +221,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "stride",
     index: "02",
     status: "in-progress",
-    title: "Stride — exploring a unified fitness platform",
+    title: "Stride",
     thumbnail: "/stride.jpeg",
     oneLiner:
       "An AI-enabled fitness platform helping users and trainers track workouts, understand progress, and improve outcomes through one shared, evolving system.",
