@@ -40,7 +40,7 @@ export const profile = {
   role: "Product Designer",
   tagline: "I design things that feel simple, even when they're not.",
   location: "Greater Noida, India",
-  status: "Available for freelance & full-time",
+  status: "Available for remote & full-time",
   email: "uiuxwithshree@gmail.com",
   resumeHref:
     "https://drive.google.com/file/d/1xGPT98DkSS4AAb-zZ5JelQWa-HpFt5eA/view?usp=sharing",
@@ -520,7 +520,7 @@ export const about = {
   facts: [
     { value: profile.yearsExperience, label: "Years in product design" },
     { value: profile.productsShipped, label: "Products shipped" },
-    { value: "2", label: "Companies worked with" },
+    { value: "6+", label: "Companies/Clients worked with" },
   ],
   tools: ["Figma", "Notion", "Framer", "Maze", "Claude", "Miro"],
 };
