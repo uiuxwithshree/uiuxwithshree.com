@@ -78,10 +78,10 @@ export const hero = {
 };
 
 export const workIntro = {
-  eyebrow: "Selected work — 02",
-  title: "One shipped, one still taking shape.",
+  eyebrow: "Selected work — 04",
+  title: "Personal explorations and shipped product work.",
   body:
-    "Not a shot dump. One project below is a real, shipped case study; the other is an active 0→1 exploration, shown honestly as a work in progress rather than dressed up as finished.",
+    "Not a shot dump. A mix of independent 0→1 projects and shipped, real-world product work from my time in industry — some shown as finished case studies, one still taking shape as an active exploration.",
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -285,6 +285,228 @@ export const caseStudies: CaseStudy[] = [
     learningTitle: "Sometimes the honest update is: still figuring it out.",
     learningBody:
       "Stride is shown here mid-process on purpose — a portfolio that only shows finished, tidy wins isn't showing how design actually happens.",
+  },
+  {
+    slug: "uvss",
+    index: "03",
+    status: "shipped",
+    title: "UVSS",
+    thumbnail: "/uvss-thumbnail.png",
+    oneLiner:
+      "Designed the end-to-end software experience for an AI-powered under-vehicle scanning system, built so simply that operators with zero computer skills could run it confidently.",
+
+    tags: [
+      { label: "AI-enabled", color: "sky" },
+      { label: "SaaS / B2B", color: "coral" },
+      { label: "Design System", color: "lilac" },
+    ],
+
+    meta: [
+      { label: "Role", value: "Product Designer" },
+      { label: "Scope", value: "Design system, UX flows & user journey" },
+      { label: "Platform", value: "Web (Security / Enterprise Software)" },
+      { label: "Status", value: "Shipped · Confidential (NDA)" },
+    ],
+
+    contextTitle:
+      "A powerful AI security system, built for operators who had never used software before.",
+
+    contextBody:
+      "UVSS uses an underground camera to scan a vehicle's underbelly, with AI flagging weapons and other anomalies in real time. My work was on the software side: the design system, the full user flow, and the end-to-end user journey. The brief had two goals, make it so easy that someone with no computer skills or technical background could operate it confidently, and shape it into a complete, sellable software-as-a-service product rather than just a tool bolted onto the hardware. This is a former employer's project, so only a limited, shareable set of screens is shown here.",
+
+    before: {
+      title: "Where it started",
+      points: [
+        "A powerful detection system with no dedicated design system or consistent UI language.",
+        "No mapped end-to-end user journey for how operators would actually work day to day.",
+        "Accessibility hadn't been designed in, despite operators varying widely in technical comfort.",
+        "The product experience wasn't yet packaged as a complete, standalone SaaS offering.",
+      ],
+    },
+
+    after: {
+      title: "Where it landed",
+      points: [
+        "A complete design system used consistently across the whole software.",
+        "Clean, WCAG-aligned user flows built and validated through user testing.",
+        "An interface simple enough for operators with no computer literacy to use unsupported.",
+        "A packaged, complete SaaS/product experience rather than a bare hardware interface.",
+      ],
+    },
+
+    problems: [
+      {
+        title: "Designing for zero computer literacy",
+        body: "Many operators had little to no prior experience with software. Every flow had to be reduced to its simplest possible form, with clear, unambiguous states and minimal room for error.",
+      },
+      {
+        title: "Turning a hardware system into a software product",
+        body: "UVSS started as a detection system built around the hardware. Part of the job was designing the software layer so it felt like a complete, coherent product — not an afterthought UI wrapped around a camera.",
+      },
+      {
+        title: "Accessibility in a security-critical interface",
+        body: "Following WCAG guidelines while keeping the interface fast to scan under pressure meant testing repeatedly with real users and simplifying flows until support calls dropped noticeably.",
+      },
+    ],
+
+    coreIdeaEyebrow: "The core idea",
+
+    coreIdea:
+      "Make a highly technical AI security system feel as simple as flipping a switch.",
+
+    coreIdeaHighlight: "AI security system",
+
+    screens: [
+      {
+        label: "Screen 01",
+        caption:
+          "One of the shareable screens from the operator-facing software — kept simple enough to use with no prior computer experience.",
+        tone: "sky",
+        img: "/uvss-thumbnail.png",
+      },
+    ],
+
+    impact: [
+      {
+        value: "1",
+        label: "Design system",
+        detail: "Built and rolled out a complete design system spanning the whole software.",
+      },
+      {
+        value: "WCAG",
+        label: "Accessibility standard",
+        detail: "Interface designed and tested against WCAG guidelines throughout.",
+      },
+      {
+        value: "Reduced",
+        label: "Support calls",
+        detail: "Simpler flows and clearer UI meaningfully reduced how often operators needed support.",
+      },
+      {
+        value: "0",
+        label: "Computer skill required",
+        detail: "Designed so operators with no technical background could use it confidently, unsupervised.",
+      },
+    ],
+
+    learningTitle: "Simplicity is a feature when the user has never touched software like this before.",
+
+    learningBody:
+      "Designing UVSS taught me that 'intuitive' means something different for every audience. Testing with operators who had no software background forced me to strip flows down to their essentials, and it paid off directly — a measurable drop in support calls after launch. It reinforced that accessibility and simplicity aren't just nice-to-haves, they're core product requirements when your users can't be assumed to have any technical baseline.",
+  },
+  {
+    slug: "parking-management-system",
+    index: "04",
+    status: "shipped",
+    title: "PMS",
+    thumbnail: "/pms-thumbnail.png",
+    oneLiner:
+      "Designed a real-time SaaS paarking management system platform for vehicle tracking and occupancy monitoring across multiple parking facilities.",
+
+    tags: [
+      { label: "SaaS / B2B", color: "coral" },
+      { label: "Product Design", color: "sky" },
+      { label: "Design System", color: "lilac" },
+    ],
+
+    meta: [
+      { label: "Role", value: "Product Designer" },
+      { label: "Scope", value: "Design system, UX flows & user journey" },
+      { label: "Platform", value: "Web (Facility Management Software)" },
+      { label: "Status", value: "Shipped · Confidential (NDA)" },
+    ],
+
+    contextTitle: "Facility teams needed live visibility into occupancy, not end-of-day reports.",
+
+    contextBody:
+      "The Parking Management System delivers real-time vehicle tracking and occupancy monitoring across facilities, packaged as a software product. As on UVSS, I worked on the design system, the complete user flow, and the overall user journey — designing for the same goals of extreme ease of use, WCAG-aligned accessibility, and a polished, complete SaaS experience. This is also a former employer's project, so only a small set of shareable screens is included here.",
+
+    before: {
+      title: "Where it started",
+      points: [
+        "Occupancy and vehicle data existed, but without a clear, real-time interface to act on it.",
+        "No consistent design system tying the product's screens and states together.",
+        "User journeys for facility staff hadn't been mapped end to end.",
+        "Accessibility and ease-of-use hadn't been designed in for non-technical facility staff.",
+      ],
+    },
+
+    after: {
+      title: "Where it landed",
+      points: [
+        "A real-time view of vehicle tracking and occupancy across facilities.",
+        "A consistent design system reused and extended from prior product work.",
+        "Clear, tested user flows built with WCAG accessibility guidelines in mind.",
+        "A complete, product-grade SaaS experience rather than a raw data dashboard.",
+      ],
+    },
+
+    problems: [
+      {
+        title: "Making real-time data actionable",
+        body: "Live vehicle and occupancy data is only useful if staff can read and act on it instantly. Flows were designed to surface the right information at a glance, without requiring interpretation.",
+      },
+      {
+        title: "Designing for non-technical facility staff",
+        body: "Like UVSS, this product needed to work for operators without deep technical skills, so flows were kept minimal, consistent, and forgiving of mistakes.",
+      },
+      {
+        title: "Scaling across multiple facilities",
+        body: "The interface had to hold up whether someone was monitoring a single lot or occupancy across many facilities at once, without becoming overwhelming.",
+      },
+    ],
+
+    coreIdeaEyebrow: "The core idea",
+
+    coreIdea:
+      "Turn live occupancy data into a system facility staff can act on instantly, not just read.",
+
+    coreIdeaHighlight: "act on instantly, not just read",
+
+    screens: [
+      {
+        label: "Screen 01",
+        caption:
+          "A shareable screen from the real-time occupancy and vehicle tracking view.",
+        tone: "mint",
+        img: "/pms-thumbnail.png",
+      },
+      {
+        label: "Screen 02",
+        caption:
+          "A shareable screen showing facility-level monitoring within the platform.",
+        tone: "coral",
+        img: "/pms-screen-02.png",
+      },
+    ],
+
+    impact: [
+      {
+        value: "Real-time",
+        label: "Occupancy tracking",
+        detail: "Live vehicle tracking and occupancy monitoring across facilities.",
+      },
+      {
+        value: "1",
+        label: "Design system",
+        detail: "Consistent design system applied across the full product.",
+      },
+      {
+        value: "WCAG",
+        label: "Accessibility standard",
+        detail: "Flows designed and tested against WCAG guidelines.",
+      },
+      {
+        value: "Multi",
+        label: "Facility support",
+        detail: "Designed to scale from a single lot to monitoring across many facilities.",
+      },
+    ],
+
+    learningTitle: "A reusable design system pays off the second time you build on it.",
+
+    learningBody:
+      "Coming into PMS after UVSS, I could reuse and extend an existing design language instead of starting over, which meant more time spent on the specific problem of real-time, multi-facility monitoring. It reinforced how much a solid design system compounds in value across products at the same company.",
   },
 ];
 
