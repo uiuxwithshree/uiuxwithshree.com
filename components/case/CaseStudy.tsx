@@ -53,6 +53,19 @@ export default function CaseStudy({ study }: { study: CaseStudyType }) {
           </Reveal>
         )}
 
+        {study.liveHref && (
+          <Reveal delay={130}>
+            <a
+              href={study.liveHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-ghost mt-5"
+            >
+              Live product ↗
+            </a>
+          </Reveal>
+        )}
+
         {study.figmaHref && (
           <Reveal delay={140}>
             <a

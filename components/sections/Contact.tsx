@@ -18,7 +18,7 @@ export default function Contact() {
             <a href={`mailto:${profile.email}`} data-cursor="Say hi 👋" className="btn btn-solid">
               {profile.email}
             </a>
-            <a href={profile.resumeHref} data-cursor="Grab a copy ↓" className="btn btn-ghost">
+            <a href={profile.resumeHref} download="Shree_Chaurasia_Product_Designer_Resume.pdf" data-cursor="Grab a copy ↓" className="btn btn-ghost">
               Download résumé
             </a>
             <a href="https://cal.com/shree-pspvnd/30min" data-cursor="Schedule a meeting" className="btn btn-ghost">

@@ -64,7 +64,7 @@ export default function Hero() {
               <a href="#work" className="btn btn-solid">
                 See the work ↓
               </a>
-              <a href={profile.resumeHref} className="btn btn-ghost">
+              <a href={profile.resumeHref} download="Shree_Chaurasia_Product_Designer_Resume.pdf" className="btn btn-ghost">
                 Download résumé
               </a>
             </div>
